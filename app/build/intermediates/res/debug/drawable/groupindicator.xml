@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/contract" android:state_expanded="true"/>
+    <item android:drawable="@drawable/expand"/>
+</selector><!-- From: file:/home/olsontl/git/maps/app/src/main/res/drawable/groupindicator.xml -->

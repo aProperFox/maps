@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-e1e14098b534c5bc9985a02df51e4ba27c3b726b.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-eebcb9507ab6c0ebeea19ea9d0ea20da1093fce8.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-dffce711f76916e859307b7a111c0247d9e1c8a4.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-9d99f82dc271725004a586f7842112e6413eabe7.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-caed15d39dd44c54bd264b1723b3ea100953389a.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-1f5e3c673da696278990ea586c2e785eca126429.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-88e068a1bda98ba3ac1768c471ff893d2b3fd009.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-14e349ef46f4937a8d0e20ebb0ffd33945e1a4d5.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-8eb30b48188d5821b1f7d3485cb0be8847701b82.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-8546a2a2a17915b2b6b74fb82bc242659ed48947.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-f69dc6dffd10327b175361872c9f72230785b5f9.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-04fb083b5fa2f6ece9ab6f4b3f9501f1e1615dc5.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-c932659c0073dac8c8f1054ab8c6db982a694b86.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-e1259e1988ec9cdb216e8a97a1fb0e67e67cf295.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-3a82836cc7fd8c15b79ce5329fcf7ab38ac36e74.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="565a01f90f1529f73362707c4c185d0623a68782">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-5725eac34e662e98774f883c336890d6261095c7.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-0e83d1c72387bc8793d54fdb35d5a16a825f9480.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-4c88301290f9e9b08543fba47865ff7dbb4c5ecc.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-49d9019ccf3a1f2d4c49c99bbe51f90576e04a08.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="bb36004beb02b69562cbec9aa7d6a3cf16bf5d1b">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-aef27aadc7f934e0838a03c79323a892ee430fd1.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/Development/adt-bundle-linux-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-5aaeeb93781dc8f08d544be2ca771de6e19871b2.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-e94c6112e705e39f0f342d59e37e2af319a70015.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-064c45bd67c1826e5c87f82a401fac0ed2e3fdff.jar" />
+    </item>
+    <item
+        jar="/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.3.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
+        <dex dex="/home/olsontl/git/maps/app/build/intermediates/pre-dexed/debug/classes-184aa646f01d0957a58992eea796550bb7999b2f.jar" />
+    </item>
+
+</items>
