@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <array name="colors">
+        <item>#994169e1</item>
+        <item>#99dd69f5</item>
+        <item>#9950dc59</item>
+        <item>#99808000</item>
+        <item>#99ff9900</item>
+        <item>#9920b2aa</item>
+        <item>#99e53030</item>
+    </array>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
     <eat-comment/>
     <string-array name="layers_array">

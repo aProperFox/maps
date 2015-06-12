@@ -58,6 +58,7 @@ public class MyLocationDemoActivity extends FragmentActivity
     private UiSettings mUiSettings;
     private DrawerLayout mDrawerLayout;
     private ExpandableListView expListView;
+    public static MapHandler mapHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,11 +98,6 @@ public class MyLocationDemoActivity extends FragmentActivity
 
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                final String selected = (String) expListAdapter.getChild(
-                        groupPosition, childPosition);
-                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
-                        .show();
-
                 return true;
             }
         });
@@ -109,7 +105,8 @@ public class MyLocationDemoActivity extends FragmentActivity
         expListView.setOnItemClickListener(new SlideitemListener());
 
         // enabling action bar app icon and behaving it as toggle button
-        getActionBar().setDisplayHomeAsUpEnabled(true);     getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.app_name,R.string.app_name)
         {
@@ -120,6 +117,7 @@ public class MyLocationDemoActivity extends FragmentActivity
                 invalidateOptionsMenu();
             }
         };
+
     }
 
     @Override
@@ -143,7 +141,8 @@ public class MyLocationDemoActivity extends FragmentActivity
 
         mUiSettings.setCompassEnabled(true);
         mUiSettings.setMyLocationButtonEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-2.899602, -78.988683), 16));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-2.899602, -78.988683), 13));
+        mapHandler = new MapHandler(map, this);
     }
 
     /**
@@ -205,7 +204,6 @@ public class MyLocationDemoActivity extends FragmentActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-
         }
 
     }
@@ -235,7 +233,8 @@ public class MyLocationDemoActivity extends FragmentActivity
     }
 
     /***   * Called when invalidateOptionsMenu() is triggered   */
-    @Override      public boolean onPrepareOptionsMenu(Menu menu) {
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(expListView);
         menu.findItem(R.id.action_settings).setVisible(!drawerOpen);

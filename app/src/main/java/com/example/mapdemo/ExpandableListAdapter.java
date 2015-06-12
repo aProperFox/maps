@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -54,6 +55,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         west.setText(routeName.substring(4) + " West");
         east.setText(routeName.substring(4) + " East");
+
+        west.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                MyLocationDemoActivity.mapHandler.showRoutes(arg0.getText().toString(), 0, arg1);
+            }
+        });
+        east.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                MyLocationDemoActivity.mapHandler.showRoutes(arg0.getText().toString(), 1, arg1);
+            }
+        });
+
         return convertView;
     }
 
