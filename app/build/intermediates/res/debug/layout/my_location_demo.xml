@@ -20,20 +20,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 class="com.google.android.gms.maps.SupportMapFragment"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Stops?"
+                android:textColor="@color/semilla_dark"
+                android:layout_marginRight="10sp"
+                android:layout_marginEnd="10sp"
+                android:paddingEnd="5sp"
+                android:paddingRight="5sp"
+                android:layout_marginBottom="10sp"
+                android:background="#ccffffff"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="onShowStops"/>
         </RelativeLayout>
 
     </FrameLayout>
 
     <ExpandableListView
         android:id="@+id/expandable_list"
-        android:layout_width="240dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#fff4f4f4"
-        android:groupIndicator="@drawable/groupindicator">
+        android:background="@color/semilla_light"
+        android:groupIndicator="@drawable/groupindicator"
+        android:indicatorLeft="160dp"
+        android:indicatorRight="195dp"
+        android:indicatorStart="160dp"
+        android:indicatorEnd="195dp">
     </ExpandableListView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <array name="colors">
+        <item>#994169e1</item>
+        <item>#99dd69f5</item>
+        <item>#9950dc59</item>
+        <item>#99808000</item>
+        <item>#99ff9900</item>
+        <item>#9920b2aa</item>
+        <item>#99e53030</item>
+    </array>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
     <eat-comment/>
     <string-array name="layers_array">
@@ -96,6 +107,16 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="semilla_blue">#5ba8b6</color>
+    <color name="semilla_brown_dark">#30231a</color>
+    <color name="semilla_brown_light">#543927</color>
+    <color name="semilla_dark">#161616</color>
+    <color name="semilla_green">#a6d73b</color>
+    <color name="semilla_light">#dcdcdc</color>
+    <!-- From: file:/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <eat-comment/>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <!-- From: file:/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.3.0/res/values/wallet_colors.xml -->
@@ -231,7 +252,7 @@
     <string name="animate">Animate</string>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="app_name">CuencaBusRoutes</string>
+    <string name="app_name">Cuenca Bus Routes</string>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
     <eat-comment/>
     <string name="basic_map_demo_description">Launches a map</string>
@@ -1206,6 +1227,20 @@ available. Please contact the developer for assistance.</string>
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/semilla_blue</item>
+        <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
+        <item name="displayOptions">showHome|homeAsUp|showTitle</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:textColor">@color/semilla_dark</item>
+    </style>
+    <!-- From: file:/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
         <item name="buttonBarStyle">@android:style/ButtonBar</item>

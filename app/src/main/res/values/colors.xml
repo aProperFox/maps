@@ -9,4 +9,10 @@
         <item>#9920b2aa</item>
         <item>#99e53030</item>
     </array>
+    <color name="semilla_green">#a6d73b</color>
+    <color name="semilla_dark">#161616</color>
+    <color name="semilla_light">#dcdcdc</color>
+    <color name="semilla_blue">#5ba8b6</color>
+    <color name="semilla_brown_light">#543927</color>
+    <color name="semilla_brown_dark">#30231a</color>
 </resources>

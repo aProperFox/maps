@@ -10,26 +10,26 @@ import java.util.HashMap;
  */
 public final class MapResources {
 
-    private static MapResources mapResources;
+    private static MapResources mapResources = new MapResources();
 
     public static HashMap<Integer, Integer> routeColors;
 
-    private class Stop {
+    public class Stop {
         public String name;
-        public int[] lines;
+        public Integer[] lines;
         public float latitude;
         public float longitude;
-        public boolean isWestBound;
-        public Stop(String name, int[] lines, float latitude, float longitude, boolean isWestBound) {
+        public boolean isEastBound;
+        public Stop(String name, Integer[] lines, float latitude, float longitude, boolean isEastBound) {
             this.name = name;
             this.lines = lines;
             this.latitude = latitude;
             this.longitude = longitude;
-            this.isWestBound = isWestBound;
+            this.isEastBound = isEastBound;
         }
     }
 
-    private class Route {
+    public class Route {
         public float[][] west;
         public float[][] east;
         public Route(float[][] west, float[][] east) {
@@ -39,21 +39,20 @@ public final class MapResources {
     }
 
     public static ArrayList<Stop> stops;
-    public static HashMap<Integer, ArrayList<Route>> routes;
+    public static HashMap<Integer, Route> routes;
 
     public MapResources() {
         mapResources = this;
 
-
         // Initialize route colors
         routeColors = new HashMap<>();
         routeColors.put(3, Color.parseColor("#994169e1"));
-        routeColors.put(3, Color.parseColor("#99dd69f5"));
-        routeColors.put(3, Color.parseColor("#9950dc59"));
-        routeColors.put(3, Color.parseColor("#99808000"));
-        routeColors.put(3, Color.parseColor("#99ff9900"));
-        routeColors.put(3, Color.parseColor("#9920b2aa"));
-        routeColors.put(3, Color.parseColor("#99e53030"));
+        routeColors.put(5, Color.parseColor("#99dd69f5"));
+        routeColors.put(7, Color.parseColor("#9950dc59"));
+        routeColors.put(8, Color.parseColor("#99808000"));
+        routeColors.put(15, Color.parseColor("#99ff9900"));
+        routeColors.put(20, Color.parseColor("#9920b2aa"));
+        routeColors.put(50, Color.parseColor("#99e53030"));
 
         // Initialize stops
         initializeStops();
@@ -65,367 +64,366 @@ public final class MapResources {
 
     private void initializeStops() {
         stops = new ArrayList<>();
-        stops.add(new Stop("Milchichig",new int[]{3},-2.890070f, -78.965754f,false));
-        stops.add(new Stop("Los Eucaliptos",new int[]{3},-2.890960f, -78.967728f,false));
-        stops.add(new Stop("Riberas del Tomebamba",new int[]{3},-2.892264f, -78.969045f,false));
-        stops.add(new Stop("Curtiembre",new int[]{3},-2.894295f, -78.971093f,false));
-        stops.add(new Stop("Urbanizacion Rio Sol",new int[]{3},-2.895575f, -78.973577f,false));
-        stops.add(new Stop("Monay Shopping Mall",new int[]{3,15,50},-2.896739f, -78.976389f,false));
-        stops.add(new Stop("Ciudadela Retamas Altas",new int[]{3,15,50},-2.897407f, -78.979818f,false));
-        stops.add(new Stop("Gran Aki",new int[]{3,15,50},-2.898050f, -78.981737f,false));
-        stops.add(new Stop("Gonzales Suarez and Paseo de los Canaris",new int[]{3, 50},-2.899030f, -78.984274f,false));
-        stops.add(new Stop("Gonzales Suarez",new int[]{3,15},-2.899764f, -78.986415f,false));
-        stops.add(new Stop("Gonzales Suarez and Guapondelig",new int[]{15},-2.8990991f,-78.9901114f,false));
-        stops.add(new Stop("Perezpata Church",new int[]{3,15},-2.899657f, -78.988534f,false));
-        stops.add(new Stop("The Municipal Cemetery",new int[]{3,5,20},-2.899148f, -78.990701f,false));
-        stops.add(new Stop("12 of April Food Market",new int[]{3,5,20},-2.901722f, -78.992364f,false));
-        stops.add(new Stop("Eloy Alfaro",new int[]{3,5,20},-2.901354f, -78.994705f,false));
-        stops.add(new Stop("Presidente Cordova and Huaynacapac",new int[]{3,5,20},-2.900797f, -78.996936f,false));
-        stops.add(new Stop("Victor J. Cuesta Park",new int[]{3,5,20},-2.900004f, -79.000085f,false));
-        stops.add(new Stop("UNE Park",new int[]{3,5,20},-2.899238f, -79.003060f,false));
-        stops.add(new Stop("San Francisco Plaza and Church",new int[]{3,5,20},-2.898509f, -79.005890f,false));
-        stops.add(new Stop("Presidente Cordoba and Juan Montalvo",new int[]{3,5},-2.897772f, -79.008813f,false));
-        stops.add(new Stop("Presidente Cordoba and Colonel Talbot",new int[]{3,5},-2.896966f, -79.011353f,false));
-        stops.add(new Stop("Roundabout on 3 of November Avenue",new int[]{3,5},-2.895678f, -79.014930f,false));
-        stops.add(new Stop("Roundabout on Avenue",new int[]{3},-2.894904f, -79.015735f,false));
-        stops.add(new Stop("Clinica Latinoamericana",new int[]{3},-2.892796f, -79.018186f,false));
-        stops.add(new Stop("Unidad Nacional",new int[]{3,8},-2.891714f, -79.019919f,false));
-        stops.add(new Stop("Estacion de Servicios",new int[]{3,8,50},-2.890773f, -79.025362f,false));
-        stops.add(new Stop("Ordonez Lasso and Los Cedros",new int[]{3,8,50},-2.890275f, -79.028672f,false));
-        stops.add(new Stop("Oro Verde Hotel",new int[]{3,8,50},-2.889573f, -79.031355f,false));
-        stops.add(new Stop("Colegio Ciudad de Cuenca",new int[]{3,8,50},-2.888437f, -79.035621f,false));
-        stops.add(new Stop("Virgen del Milagro Church",new int[]{3,8,50},-2.887595f, -79.038392f,false));
-        stops.add(new Stop("Monay Park",new int[]{15,50},-2.897975f, -78.972511f,false));
-        stops.add(new Stop("Max Uhle",new int[]{15},-2.8990188f,-78.9842749f,false));
-        stops.add(new Stop("Max Uhle and Jorge Carrera Andrade",new int[]{50},-2.902529f, -78.984560f,false));
-        stops.add(new Stop("Empresa Electrica",new int[]{50},-2.904918f, -78.984109f,false));
-        stops.add(new Stop("Camilo Ponce and Pumapungo",new int[]{50},-2.906815f, -78.984528f,false));
-        stops.add(new Stop("Camilo Ponce and Angel Silva",new int[]{50},-2.904950f, -78.986255f,false));
-        stops.add(new Stop("Juan Jose Flores and Paseo de los Canaris",new int[]{50},-2.902732f, -78.988218f,false));
-        stops.add(new Stop("Juan Jose Flores and Jijon Caamano",new int[]{50},-2.901296f, -78.989731f,false));
-        stops.add(new Stop("Republica and Guapondelig",new int[]{50},-2.899861f, -78.990879f,false));
-        stops.add(new Stop("Republica and Octavio Diaz",new int[]{50},-2.899443f, -78.992488f,false));
-        stops.add(new Stop("Sala de Velaciones",new int[]{50},-2.897192f, -78.992488f,false));
-        stops.add(new Stop("Rocafuerte",new int[]{15},-2.897165f,-78.992756f,false));
-        stops.add(new Stop("Rocafuerte and Huaynacapac",new int[]{15,50},-2.896892f, -78.994634f,false));
-        stops.add(new Stop("Lamar and Manuel Vega",new int[]{50},-2.896442f, -78.997284f,false));
-        stops.add(new Stop("9 of October Food Market",new int[]{50},-2.895746f, -79.000149f,false));
-        stops.add(new Stop("Lamar and Luis Cordero",new int[]{50},-2.894974f, -79.003271f,false));
-        stops.add(new Stop("Lamar and General Torres",new int[]{50},-2.894235f, -79.006082f,false));
-        stops.add(new Stop("Lamar and Estevez de Toral",new int[]{50},-2.893485f, -79.009118f,false));
-        stops.add(new Stop("3 of November Food Market",new int[]{50},-2.893153f, -79.010234f,false));
-        stops.add(new Stop("Lamar and Miguel Heredia",new int[]{50},-2.892703f, -79.012122f,false));
-        stops.add(new Stop("Lamar and Abraham Sarmiento",new int[]{50},-2.892692f, -79.014547f,false));
-        stops.add(new Stop("Unidad Nacional and 3 de Noviembre Avenue",new int[]{50},-2.892349f, -79.018881f,false));
-        stops.add(new Stop("Coliseum",new int[]{50},-2.894878f, -79.019182f,false));
-        stops.add(new Stop("Totems",new int[]{50},-2.897642f, -79.020512f,false));
-        stops.add(new Stop("Charles Darwin Street",new int[]{50},-2.897301f, -79.023009f,false));
-        stops.add(new Stop("Del Batan",new int[]{50},-2.895407f, -79.024758f,false));
-        stops.add(new Stop("San Blas",new int[]{7,15},-2.8993616f,-78.99676860000001f,false));
-        stops.add(new Stop("Escuela Teresa Valse",new int[]{7,15},-2.9027476f,-78.9968115f,false));
-        stops.add(new Stop("Banco Central and Pumapungo Ruins",new int[]{7,15},-2.9061496f,-78.9964467f,false));
-        stops.add(new Stop("El Vergel Church",new int[]{7,15},-2.9096534f,-78.9958084f,false));
-        stops.add(new Stop("12 of April Ave",new int[]{7,15},-2.909857f,-78.9966989f,false));
-        stops.add(new Stop("Santa Ana Clinic",new int[]{7,15},-2.907789f,-78.9985335f,false));
-        stops.add(new Stop("La Madre Park",new int[]{7,15},-2.9034655f,-79.0031415f,false));
-        stops.add(new Stop("Centenario",new int[]{5,15},-2.9024369f,-79.0064782f,false));
-        stops.add(new Stop("The Stadium",new int[]{5,15},-2.9062943f,-79.00750820000002f,false));
-        stops.add(new Stop("Colegio La Salle",new int[]{5,15},-2.9099321f,-79.0085059f,false));
-        stops.add(new Stop("Virgen del Bronze Church",new int[]{15},-2.9103874f,-79.0104533f,false));
-        stops.add(new Stop("Juan Iniguez",new int[]{15},-2.9096186f,-79.013004f,false));
-        stops.add(new Stop("Avenida 12 de Octubre",new int[]{15},-2.908582f,-79.0160483f,false));
-        stops.add(new Stop("Avenida 10 de Agosto",new int[]{15},-2.9070283f,-79.0209621f,false));
-        stops.add(new Stop("Hortencia Mata",new int[]{15},-2.9062997f,-79.0226841f,false));
-        stops.add(new Stop("Loja Ave",new int[]{15},-2.9058389f,-79.0243149f,false));
-        stops.add(new Stop("Mexico",new int[]{15},-2.9019922f,-79.0227699f,false));
-        stops.add(new Stop("Feria Libre",new int[]{15},-2.8996456f,-79.0267181f,false));
-        stops.add(new Stop("Pichincha",new int[]{15},-2.9077837f,-79.0185696f,false));
-        stops.add(new Stop("Calle del Condor",new int[]{5},-2.8899859f,-78.9737231f,false));
-        stops.add(new Stop("De Los Huancavilcas",new int[]{5},-2.8888233f,-78.9761049f,false));
-        stops.add(new Stop("Los Andes and Bueran",new int[]{5,20},-2.8891662f,-78.97754790000002f,false));
-        stops.add(new Stop("Complejo Deportivo Totoracocha",new int[]{5,20},-2.8917325f,-78.9763302f,false));
-        stops.add(new Stop("Rio Paute and Yana Urco",new int[]{5,20},-2.893388f,-78.9761853f,false));
-        stops.add(new Stop("Ciudadela UNE",new int[]{5,20},-2.8941166f,-78.9784116f,false));
-        stops.add(new Stop("Yana Urco and Calle Coya",new int[]{5,20},-2.8946416f,-78.9798814f,false));
-        stops.add(new Stop("Yana Urco and Cordillera",new int[]{5,20},-2.8952256f,-78.9818287f,false));
-        stops.add(new Stop("Ciudadela Banco de la Vivienda",new int[]{5,20},-2.89649f,-78.9846128f,false));
-        stops.add(new Stop("Yana Urco and Chan Chan",new int[]{5,20},-2.8974999f,-78.9864126f,false));
-        stops.add(new Stop("Yana Urco and Avenida Guapondelig",new int[]{5,20},-2.8978187f,-78.9896071f,false));
-        stops.add(new Stop("12 de Abril and Guayas",new int[]{5},-2.8973686f,-79.0140125f,false));
-        stops.add(new Stop("Puente del Vado",new int[]{5},-2.8989063f,-79.010987f,false));
-        stops.add(new Stop("Universidad de Cuenca",new int[]{5},-2.8999349f,-79.0092355f,false));
-        stops.add(new Stop("Colegio Bilingue",new int[]{5},-2.9144323f,-79.0097237f,false));
-        stops.add(new Stop("Avenida Don Bosco",new int[]{5},-2.9156217f,-79.0114564f,false));
-        stops.add(new Stop("Pablo Picasso",new int[]{5},-2.9154128f,-79.0135056f,false));
-        stops.add(new Stop("Colegio Tecnico Salesiano",new int[]{5},-2.9152252f,-79.0154046f,false));
-        stops.add(new Stop("Fernando Aragon",new int[]{5},-2.915402f,-79.018001f,false));
-        stops.add(new Stop("Parque Iberia",new int[]{5},-2.9155842f,-79.0200824f,false));
-        stops.add(new Stop("Don Bosco and 12 of October",new int[]{5},-2.9158038f,-79.0226465f,false));
-        stops.add(new Stop("Turuhaico and Calle Huacas",new int[]{7,8},-2.8846042f,-78.9895722f,false));
-        stops.add(new Stop("Calle Vieja",new int[]{7,8},-2.8854601f,-78.9877102f,false));
-        stops.add(new Stop("Avenida Espana",new int[]{7},-2.8870389f,-78.9863382f,false));
-        stops.add(new Stop("Centenario",new int[]{7},-2.9018138000000007f,-79.00634360000001f,false));
-        stops.add(new Stop("University of Cuenca",new int[]{7},-2.8999788f,-79.0087731f,false));
-        stops.add(new Stop("Puente del Vado",new int[]{7},-2.8985305f,-79.0114726f,false));
-        stops.add(new Stop("El Batan",new int[]{7},-2.8968612f,-79.0142382f,false));
-        stops.add(new Stop("Avenida 12 de Abril and Imbabura",new int[]{7},-2.8952822f,-79.0168227f,false));
-        stops.add(new Stop("Coliseo",new int[]{7},-2.8942422f,-79.0209102f,false));
-        stops.add(new Stop("Airport",new int[]{7,8},-2.8884536f,-78.9880972f,false));
-        stops.add(new Stop("Edwin Sacoto",new int[]{7},-2.8954914f,-79.0233439f,false));
-        stops.add(new Stop("Remigio Crespo",new int[]{7},-2.8970811f,-79.0237165f,false));
-        stops.add(new Stop("Feria Libre",new int[]{7},-2.8980577f,-79.026216f,false));
-        stops.add(new Stop("CREA",new int[]{7},-2.9011904f,-79.0287245f,false));
-        stops.add(new Stop("Mexico",new int[]{7},-2.902443f,-79.028865f,false));
-        stops.add(new Stop("Avenida Loja",new int[]{7},-2.9037439f,-79.0254842f,false));
-        stops.add(new Stop("Avenida 10 De Agosto",new int[]{7},-2.9063475f,-79.023463f,false));
-        stops.add(new Stop("Pichincha",new int[]{7},-2.9073036f,-79.0209976f,false));
-        stops.add(new Stop("Avenida 12 de Octubre",new int[]{7},-2.9110546f,-79.0207592f,false));
-        stops.add(new Stop("Cristobal Colon",new int[]{7},-2.9131062f,-79.0216892f,false));
-        stops.add(new Stop("Almacenes Juan",new int[]{7,8},-2.890782f,-78.991493f,false));
-        stops.add(new Stop("Don Bosco Gas Station",new int[]{7},-2.9145707f,-79.0227682f,false));
-        stops.add(new Stop("Avenida Don Bosco",new int[]{7},-2.9164157f,-79.0231022f,false));
-        stops.add(new Stop("Facultad de Agronomia",new int[]{7},-2.918772f,-79.0243023f,false));
-        stops.add(new Stop("Porton Del Rio",new int[]{7},-2.9199123f,-79.027068f,false));
-        stops.add(new Stop("Redondel Autopista",new int[]{7},-2.921825f,-79.02787180000001f,false));
-        stops.add(new Stop("Subida Alterna a Turi",new int[]{7},-2.9220716f,-79.0255711f,false));
-        stops.add(new Stop("Edificio Vista Linda",new int[]{7},-2.9211077f,-79.022201f,false));
-        stops.add(new Stop("Camino Viejo a Turi",new int[]{7},-2.9200039f,-79.012117f,false));
-        stops.add(new Stop("Mall Del Rio",new int[]{7},-2.919971f,-79.0165651f,false));
-        stops.add(new Stop("Terminal Terrestre",new int[]{7},-2.8925585f,-78.9925142f,false));
-        stops.add(new Stop("Nunez De Bonilla",new int[]{7},-2.8942556f,-78.9949465f,false));
-        stops.add(new Stop("Chola Cuencana",new int[]{7},-2.896406f,-78.9966141f,false));
-        stops.add(new Stop("Plataforma",new int[]{8},-2.8670460000000006f,-78.9901664f,false));
-        stops.add(new Stop("Plataforma",new int[]{8},-2.8654529f,-78.9902298f,false));
-        stops.add(new Stop("Iglesia Las Orchideas",new int[]{8},-2.864438f,-78.989729f,false));
-        stops.add(new Stop("Escuela Isabel Moscoso",new int[]{8},-2.865415f,-78.9876497f,false));
-        stops.add(new Stop("Parque",new int[]{8},-2.8648811f,-78.9865108f,false));
-        stops.add(new Stop("Iglesia Envangelica",new int[]{8},-2.8654962f,-78.98502440000001f,false));
-        stops.add(new Stop("De Los Chasquis",new int[]{8},-2.8676482f,-78.9838226f,false));
-        stops.add(new Stop("Ciudadela Uncovia",new int[]{8},-2.871363f,-78.981621f,false));
-        stops.add(new Stop("Cooperative Jep",new int[]{8},-2.8732079f,-78.9804096f,false));
-        stops.add(new Stop("Industrial Park",new int[]{8},-2.8754758f,-78.98124f,false));
-        stops.add(new Stop("Gas Station",new int[]{8},-2.8792321f,-78.9816829f,false));
-        stops.add(new Stop("Jacaranda Park",new int[]{8},-2.881303f,-78.9844464f,false));
-        stops.add(new Stop("Entrada A La Catolica",new int[]{8},-2.8822642f,-78.9872647f,false));
-        stops.add(new Stop("Redondel De Miraflores",new int[]{8},-2.8834188f,-78.9897208f,false));
-        stops.add(new Stop("Politecnica Salesiano University",new int[]{8},-2.8866514f,-78.9889698f,false));
-        stops.add(new Stop("Terminal Terrestre",new int[]{8},-2.8912986f,-78.9936413f,false));
-        stops.add(new Stop("Avenida Espana",new int[]{8},-2.891992f,-78.9960651f,false));
-        stops.add(new Stop("Huaynacapac Avenue",new int[]{8},-2.8939318000000003f,-78.9964738f,false));
-        stops.add(new Stop("Vega Munoz",new int[]{8},-2.8942941f,-78.9971107f,false));
-        stops.add(new Stop("9 De Octubre Market",new int[]{8},-2.8937255f,-78.999909f,false));
-        stops.add(new Stop("Luis Cordero",new int[]{8},-2.8930449f,-79.0027925f,false));
-        stops.add(new Stop("Maria Auxiliadora Plaza and Church",new int[]{8},-2.8923340000000004f,-79.0056294f,false));
-        stops.add(new Stop("Juan Montalvo and Sangurima",new int[]{8},-2.892284f,-79.0081436f,false));
-        stops.add(new Stop("Juan Montalvo and Gran Colombia",new int[]{8},-2.8944131f,-79.0085301f,false));
-        stops.add(new Stop("San Sebastian Plaza",new int[]{8},-2.8951724f,-79.0108679f,false));
-        stops.add(new Stop("Corazon de Jesus Church",new int[]{8},-2.8932832f,-79.0143102f,false));
-        stops.add(new Stop("Hermano Cordero School",new int[]{8},-2.8924767f,-79.016501f,false));
-        stops.add(new Stop("Ordonez Lasso",new int[]{3,8},-2.891212f,-79.023109f,false));
-        stops.add(new Stop("Cenaculo",new int[]{20},-2.8964524f,-79.0077562f,false));
-        stops.add(new Stop("Colegio San Francisco",new int[]{20},-2.8946222f,-79.0074344f,false));
-        stops.add(new Stop("Pio Bravo and Tarqui",new int[]{20},-2.8916194f,-79.0068666f,false));
-        stops.add(new Stop("Rafael Maria Arizaga",new int[]{20},-2.8904911f,-79.0066653f,false));
-        stops.add(new Stop("Pedro Leon and Nicanor Merchan",new int[]{20},-2.8873363f,-79.00775f,false));
-        stops.add(new Stop("Avenida Del Chofer and Ave de las Americas",new int[]{20},-2.886541f,-79.009448f,false));
-        stops.add(new Stop("Avenida del Chofer",new int[]{20},-2.8861266f,-79.0151322f,false));
-        stops.add(new Stop("Avenida Del Chofer and Espadana",new int[]{20},-2.8877077f,-79.0143018f,false));
-        stops.add(new Stop("Alexander Humboldt and Avenida del Chofer",new int[]{20},-2.8874225f,-79.011947f,false));
-        stops.add(new Stop("Nicanor Merchan and Tarqui",new int[]{20},-2.8886679f,-79.0066981f,false));
-        stops.add(new Stop("Hurtado de Mendoza and Los Andes",new int[]{20},-2.8877303f,-78.9790097f,false));
-        stops.add(new Stop("Hurtado de Mendoza and Huila",new int[]{20},-2.8853703f,-78.97620410000002f,false));
-        stops.add(new Stop("Pan de Azucar",new int[]{20},-2.886691f,-78.9780682f,false));
+        stops.add(new Stop("Milchichig",new Integer[]{3},-2.890070f, -78.965754f,false));
+        stops.add(new Stop("Los Eucaliptos",new Integer[]{3},-2.890960f, -78.967728f,false));
+        stops.add(new Stop("Riberas del Tomebamba",new Integer[]{3},-2.892264f, -78.969045f,false));
+        stops.add(new Stop("Curtiembre",new Integer[]{3},-2.894295f, -78.971093f,false));
+        stops.add(new Stop("Urbanizacion Rio Sol",new Integer[]{3},-2.895575f, -78.973577f,false));
+        stops.add(new Stop("Monay Shopping Mall",new Integer[]{3,15,50},-2.896739f, -78.976389f,false));
+        stops.add(new Stop("Ciudadela Retamas Altas",new Integer[]{3,15,50},-2.897407f, -78.979818f,false));
+        stops.add(new Stop("Gran Aki",new Integer[]{3,15,50},-2.898050f, -78.981737f,false));
+        stops.add(new Stop("Gonzales Suarez and Paseo de los Canaris",new Integer[]{3, 50},-2.899030f, -78.984274f,false));
+        stops.add(new Stop("Gonzales Suarez",new Integer[]{3,15},-2.899764f, -78.986415f,false));
+        stops.add(new Stop("Gonzales Suarez and Guapondelig",new Integer[]{15},-2.8990991f,-78.9901114f,false));
+        stops.add(new Stop("Perezpata Church",new Integer[]{3,15},-2.899657f, -78.988534f,false));
+        stops.add(new Stop("The Municipal Cemetery",new Integer[]{3,5,20},-2.899148f, -78.990701f,false));
+        stops.add(new Stop("12 of April Food Market",new Integer[]{3,5,20},-2.901722f, -78.992364f,false));
+        stops.add(new Stop("Eloy Alfaro",new Integer[]{3,5,20},-2.901354f, -78.994705f,false));
+        stops.add(new Stop("Presidente Cordova and Huaynacapac",new Integer[]{3,5,20},-2.900797f, -78.996936f,false));
+        stops.add(new Stop("Victor J. Cuesta Park",new Integer[]{3,5,20},-2.900004f, -79.000085f,false));
+        stops.add(new Stop("UNE Park",new Integer[]{3,5,20},-2.899238f, -79.003060f,false));
+        stops.add(new Stop("San Francisco Plaza and Church",new Integer[]{3,5,20},-2.898509f, -79.005890f,false));
+        stops.add(new Stop("Presidente Cordoba and Juan Montalvo",new Integer[]{3,5},-2.897772f, -79.008813f,false));
+        stops.add(new Stop("Presidente Cordoba and Colonel Talbot",new Integer[]{3,5},-2.896966f, -79.011353f,false));
+        stops.add(new Stop("Roundabout on 3 of November Avenue",new Integer[]{3,5},-2.895678f, -79.014930f,false));
+        stops.add(new Stop("Roundabout on Avenue",new Integer[]{3},-2.894904f, -79.015735f,false));
+        stops.add(new Stop("Clinica Latinoamericana",new Integer[]{3},-2.892796f, -79.018186f,false));
+        stops.add(new Stop("Unidad Nacional",new Integer[]{3,8},-2.891714f, -79.019919f,false));
+        stops.add(new Stop("Estacion de Servicios",new Integer[]{3,8,50},-2.890773f, -79.025362f,false));
+        stops.add(new Stop("Ordonez Lasso and Los Cedros",new Integer[]{3,8,50},-2.890275f, -79.028672f,false));
+        stops.add(new Stop("Oro Verde Hotel",new Integer[]{3,8,50},-2.889573f, -79.031355f,false));
+        stops.add(new Stop("Colegio Ciudad de Cuenca",new Integer[]{3,8,50},-2.888437f, -79.035621f,false));
+        stops.add(new Stop("Virgen del Milagro Church",new Integer[]{3,8,50},-2.887595f, -79.038392f,false));
+        stops.add(new Stop("Monay Park",new Integer[]{15,50},-2.897975f, -78.972511f,false));
+        stops.add(new Stop("Max Uhle",new Integer[]{15},-2.8990188f,-78.9842749f,false));
+        stops.add(new Stop("Max Uhle and Jorge Carrera Andrade",new Integer[]{50},-2.902529f, -78.984560f,false));
+        stops.add(new Stop("Empresa Electrica",new Integer[]{50},-2.904918f, -78.984109f,false));
+        stops.add(new Stop("Camilo Ponce and Pumapungo",new Integer[]{50},-2.906815f, -78.984528f,false));
+        stops.add(new Stop("Camilo Ponce and Angel Silva",new Integer[]{50},-2.904950f, -78.986255f,false));
+        stops.add(new Stop("Juan Jose Flores and Paseo de los Canaris",new Integer[]{50},-2.902732f, -78.988218f,false));
+        stops.add(new Stop("Juan Jose Flores and Jijon Caamano",new Integer[]{50},-2.901296f, -78.989731f,false));
+        stops.add(new Stop("Republica and Guapondelig",new Integer[]{50},-2.899861f, -78.990879f,false));
+        stops.add(new Stop("Republica and Octavio Diaz",new Integer[]{50},-2.899443f, -78.992488f,false));
+        stops.add(new Stop("Sala de Velaciones",new Integer[]{50},-2.897192f, -78.992488f,false));
+        stops.add(new Stop("Rocafuerte",new Integer[]{15},-2.897165f,-78.992756f,false));
+        stops.add(new Stop("Rocafuerte and Huaynacapac",new Integer[]{15,50},-2.896892f, -78.994634f,false));
+        stops.add(new Stop("Lamar and Manuel Vega",new Integer[]{50},-2.896442f, -78.997284f,false));
+        stops.add(new Stop("9 of October Food Market",new Integer[]{50},-2.895746f, -79.000149f,false));
+        stops.add(new Stop("Lamar and Luis Cordero",new Integer[]{50},-2.894974f, -79.003271f,false));
+        stops.add(new Stop("Lamar and General Torres",new Integer[]{50},-2.894235f, -79.006082f,false));
+        stops.add(new Stop("Lamar and Estevez de Toral",new Integer[]{50},-2.893485f, -79.009118f,false));
+        stops.add(new Stop("3 of November Food Market",new Integer[]{50},-2.893153f, -79.010234f,false));
+        stops.add(new Stop("Lamar and Miguel Heredia",new Integer[]{50},-2.892703f, -79.012122f,false));
+        stops.add(new Stop("Lamar and Abraham Sarmiento",new Integer[]{50},-2.892692f, -79.014547f,false));
+        stops.add(new Stop("Unidad Nacional and 3 de Noviembre Avenue",new Integer[]{50},-2.892349f, -79.018881f,false));
+        stops.add(new Stop("Coliseum",new Integer[]{50},-2.894878f, -79.019182f,false));
+        stops.add(new Stop("Totems",new Integer[]{50},-2.897642f, -79.020512f,false));
+        stops.add(new Stop("Charles Darwin Street",new Integer[]{50},-2.897301f, -79.023009f,false));
+        stops.add(new Stop("Del Batan",new Integer[]{50},-2.895407f, -79.024758f,false));
+        stops.add(new Stop("San Blas",new Integer[]{7,15},-2.8993616f,-78.99676860000001f,false));
+        stops.add(new Stop("Escuela Teresa Valse",new Integer[]{7,15},-2.9027476f,-78.9968115f,false));
+        stops.add(new Stop("Banco Central and Pumapungo Ruins",new Integer[]{7,15},-2.9061496f,-78.9964467f,false));
+        stops.add(new Stop("El Vergel Church",new Integer[]{7,15},-2.9096534f,-78.9958084f,false));
+        stops.add(new Stop("12 of April Ave",new Integer[]{7,15},-2.909857f,-78.9966989f,false));
+        stops.add(new Stop("Santa Ana Clinic",new Integer[]{7,15},-2.907789f,-78.9985335f,false));
+        stops.add(new Stop("La Madre Park",new Integer[]{7,15},-2.9034655f,-79.0031415f,false));
+        stops.add(new Stop("Centenario",new Integer[]{5,15},-2.9024369f,-79.0064782f,false));
+        stops.add(new Stop("The Stadium",new Integer[]{5,15},-2.9062943f,-79.00750820000002f,false));
+        stops.add(new Stop("Colegio La Salle",new Integer[]{5,15},-2.9099321f,-79.0085059f,false));
+        stops.add(new Stop("Virgen del Bronze Church",new Integer[]{15},-2.9103874f,-79.0104533f,false));
+        stops.add(new Stop("Juan Iniguez",new Integer[]{15},-2.9096186f,-79.013004f,false));
+        stops.add(new Stop("Avenida 12 de Octubre",new Integer[]{15},-2.908582f,-79.0160483f,false));
+        stops.add(new Stop("Avenida 10 de Agosto",new Integer[]{15},-2.9070283f,-79.0209621f,false));
+        stops.add(new Stop("Hortencia Mata",new Integer[]{15},-2.9062997f,-79.0226841f,false));
+        stops.add(new Stop("Loja Ave",new Integer[]{15},-2.9058389f,-79.0243149f,false));
+        stops.add(new Stop("Mexico",new Integer[]{15},-2.9019922f,-79.0227699f,false));
+        stops.add(new Stop("Feria Libre",new Integer[]{15},-2.8996456f,-79.0267181f,false));
+        stops.add(new Stop("Pichincha",new Integer[]{15},-2.9077837f,-79.0185696f,false));
+        stops.add(new Stop("Calle del Condor",new Integer[]{5},-2.8899859f,-78.9737231f,false));
+        stops.add(new Stop("De Los Huancavilcas",new Integer[]{5},-2.8888233f,-78.9761049f,false));
+        stops.add(new Stop("Los Andes and Bueran",new Integer[]{5,20},-2.8891662f,-78.97754790000002f,false));
+        stops.add(new Stop("Complejo Deportivo Totoracocha",new Integer[]{5,20},-2.8917325f,-78.9763302f,false));
+        stops.add(new Stop("Rio Paute and Yana Urco",new Integer[]{5,20},-2.893388f,-78.9761853f,false));
+        stops.add(new Stop("Ciudadela UNE",new Integer[]{5,20},-2.8941166f,-78.9784116f,false));
+        stops.add(new Stop("Yana Urco and Calle Coya",new Integer[]{5,20},-2.8946416f,-78.9798814f,false));
+        stops.add(new Stop("Yana Urco and Cordillera",new Integer[]{5,20},-2.8952256f,-78.9818287f,false));
+        stops.add(new Stop("Ciudadela Banco de la Vivienda",new Integer[]{5,20},-2.89649f,-78.9846128f,false));
+        stops.add(new Stop("Yana Urco and Chan Chan",new Integer[]{5,20},-2.8974999f,-78.9864126f,false));
+        stops.add(new Stop("Yana Urco and Avenida Guapondelig",new Integer[]{5,20},-2.8978187f,-78.9896071f,false));
+        stops.add(new Stop("12 de Abril and Guayas",new Integer[]{5},-2.8973686f,-79.0140125f,false));
+        stops.add(new Stop("Puente del Vado",new Integer[]{5},-2.8989063f,-79.010987f,false));
+        stops.add(new Stop("Universidad de Cuenca",new Integer[]{5},-2.8999349f,-79.0092355f,false));
+        stops.add(new Stop("Colegio Bilingue",new Integer[]{5},-2.9144323f,-79.0097237f,false));
+        stops.add(new Stop("Avenida Don Bosco",new Integer[]{5},-2.9156217f,-79.0114564f,false));
+        stops.add(new Stop("Pablo Picasso",new Integer[]{5},-2.9154128f,-79.0135056f,false));
+        stops.add(new Stop("Colegio Tecnico Salesiano",new Integer[]{5},-2.9152252f,-79.0154046f,false));
+        stops.add(new Stop("Fernando Aragon",new Integer[]{5},-2.915402f,-79.018001f,false));
+        stops.add(new Stop("Parque Iberia",new Integer[]{5},-2.9155842f,-79.0200824f,false));
+        stops.add(new Stop("Don Bosco and 12 of October",new Integer[]{5},-2.9158038f,-79.0226465f,false));
+        stops.add(new Stop("Turuhaico and Calle Huacas",new Integer[]{7,8},-2.8846042f,-78.9895722f,false));
+        stops.add(new Stop("Calle Vieja",new Integer[]{7,8},-2.8854601f,-78.9877102f,false));
+        stops.add(new Stop("Avenida Espana",new Integer[]{7},-2.8870389f,-78.9863382f,false));
+        stops.add(new Stop("Centenario",new Integer[]{7},-2.9018138000000007f,-79.00634360000001f,false));
+        stops.add(new Stop("University of Cuenca",new Integer[]{7},-2.8999788f,-79.0087731f,false));
+        stops.add(new Stop("Puente del Vado",new Integer[]{7},-2.8985305f,-79.0114726f,false));
+        stops.add(new Stop("El Batan",new Integer[]{7},-2.8968612f,-79.0142382f,false));
+        stops.add(new Stop("Avenida 12 de Abril and Imbabura",new Integer[]{7},-2.8952822f,-79.0168227f,false));
+        stops.add(new Stop("Coliseo",new Integer[]{7},-2.8942422f,-79.0209102f,false));
+        stops.add(new Stop("Airport",new Integer[]{7,8},-2.8884536f,-78.9880972f,false));
+        stops.add(new Stop("Edwin Sacoto",new Integer[]{7},-2.8954914f,-79.0233439f,false));
+        stops.add(new Stop("Remigio Crespo",new Integer[]{7},-2.8970811f,-79.0237165f,false));
+        stops.add(new Stop("Feria Libre",new Integer[]{7},-2.8980577f,-79.026216f,false));
+        stops.add(new Stop("CREA",new Integer[]{7},-2.9011904f,-79.0287245f,false));
+        stops.add(new Stop("Mexico",new Integer[]{7},-2.902443f,-79.028865f,false));
+        stops.add(new Stop("Avenida Loja",new Integer[]{7},-2.9037439f,-79.0254842f,false));
+        stops.add(new Stop("Avenida 10 De Agosto",new Integer[]{7},-2.9063475f,-79.023463f,false));
+        stops.add(new Stop("Pichincha",new Integer[]{7},-2.9073036f,-79.0209976f,false));
+        stops.add(new Stop("Avenida 12 de Octubre",new Integer[]{7},-2.9110546f,-79.0207592f,false));
+        stops.add(new Stop("Cristobal Colon",new Integer[]{7},-2.9131062f,-79.0216892f,false));
+        stops.add(new Stop("Almacenes Juan",new Integer[]{7,8},-2.890782f,-78.991493f,false));
+        stops.add(new Stop("Don Bosco Gas Station",new Integer[]{7},-2.9145707f,-79.0227682f,false));
+        stops.add(new Stop("Avenida Don Bosco",new Integer[]{7},-2.9164157f,-79.0231022f,false));
+        stops.add(new Stop("Facultad de Agronomia",new Integer[]{7},-2.918772f,-79.0243023f,false));
+        stops.add(new Stop("Porton Del Rio",new Integer[]{7},-2.9199123f,-79.027068f,false));
+        stops.add(new Stop("Redondel Autopista",new Integer[]{7},-2.921825f,-79.02787180000001f,false));
+        stops.add(new Stop("Subida Alterna a Turi",new Integer[]{7},-2.9220716f,-79.0255711f,false));
+        stops.add(new Stop("Edificio Vista Linda",new Integer[]{7},-2.9211077f,-79.022201f,false));
+        stops.add(new Stop("Camino Viejo a Turi",new Integer[]{7},-2.9200039f,-79.012117f,false));
+        stops.add(new Stop("Mall Del Rio",new Integer[]{7},-2.919971f,-79.0165651f,false));
+        stops.add(new Stop("Terminal Terrestre",new Integer[]{7},-2.8925585f,-78.9925142f,false));
+        stops.add(new Stop("Nunez De Bonilla",new Integer[]{7},-2.8942556f,-78.9949465f,false));
+        stops.add(new Stop("Chola Cuencana",new Integer[]{7},-2.896406f,-78.9966141f,false));
+        stops.add(new Stop("Plataforma",new Integer[]{8},-2.8670460000000006f,-78.9901664f,false));
+        stops.add(new Stop("Plataforma",new Integer[]{8},-2.8654529f,-78.9902298f,false));
+        stops.add(new Stop("Iglesia Las Orchideas",new Integer[]{8},-2.864438f,-78.989729f,false));
+        stops.add(new Stop("Escuela Isabel Moscoso",new Integer[]{8},-2.865415f,-78.9876497f,false));
+        stops.add(new Stop("Parque",new Integer[]{8},-2.8648811f,-78.9865108f,false));
+        stops.add(new Stop("Iglesia Envangelica",new Integer[]{8},-2.8654962f,-78.98502440000001f,false));
+        stops.add(new Stop("De Los Chasquis",new Integer[]{8},-2.8676482f,-78.9838226f,false));
+        stops.add(new Stop("Ciudadela Uncovia",new Integer[]{8},-2.871363f,-78.981621f,false));
+        stops.add(new Stop("Cooperative Jep",new Integer[]{8},-2.8732079f,-78.9804096f,false));
+        stops.add(new Stop("Industrial Park",new Integer[]{8},-2.8754758f,-78.98124f,false));
+        stops.add(new Stop("Gas Station",new Integer[]{8},-2.8792321f,-78.9816829f,false));
+        stops.add(new Stop("Jacaranda Park",new Integer[]{8},-2.881303f,-78.9844464f,false));
+        stops.add(new Stop("Entrada A La Catolica",new Integer[]{8},-2.8822642f,-78.9872647f,false));
+        stops.add(new Stop("Redondel De Miraflores",new Integer[]{8},-2.8834188f,-78.9897208f,false));
+        stops.add(new Stop("Politecnica Salesiano University",new Integer[]{8},-2.8866514f,-78.9889698f,false));
+        stops.add(new Stop("Terminal Terrestre",new Integer[]{8},-2.8912986f,-78.9936413f,false));
+        stops.add(new Stop("Avenida Espana",new Integer[]{8},-2.891992f,-78.9960651f,false));
+        stops.add(new Stop("Huaynacapac Avenue",new Integer[]{8},-2.8939318000000003f,-78.9964738f,false));
+        stops.add(new Stop("Vega Munoz",new Integer[]{8},-2.8942941f,-78.9971107f,false));
+        stops.add(new Stop("9 De Octubre Market",new Integer[]{8},-2.8937255f,-78.999909f,false));
+        stops.add(new Stop("Luis Cordero",new Integer[]{8},-2.8930449f,-79.0027925f,false));
+        stops.add(new Stop("Maria Auxiliadora Plaza and Church",new Integer[]{8},-2.8923340000000004f,-79.0056294f,false));
+        stops.add(new Stop("Juan Montalvo and Sangurima",new Integer[]{8},-2.892284f,-79.0081436f,false));
+        stops.add(new Stop("Juan Montalvo and Gran Colombia",new Integer[]{8},-2.8944131f,-79.0085301f,false));
+        stops.add(new Stop("San Sebastian Plaza",new Integer[]{8},-2.8951724f,-79.0108679f,false));
+        stops.add(new Stop("Corazon de Jesus Church",new Integer[]{8},-2.8932832f,-79.0143102f,false));
+        stops.add(new Stop("Hermano Cordero School",new Integer[]{8},-2.8924767f,-79.016501f,false));
+        stops.add(new Stop("Ordonez Lasso",new Integer[]{3,8},-2.891212f,-79.023109f,false));
+        stops.add(new Stop("Cenaculo",new Integer[]{20},-2.8964524f,-79.0077562f,false));
+        stops.add(new Stop("Colegio San Francisco",new Integer[]{20},-2.8946222f,-79.0074344f,false));
+        stops.add(new Stop("Pio Bravo and Tarqui",new Integer[]{20},-2.8916194f,-79.0068666f,false));
+        stops.add(new Stop("Rafael Maria Arizaga",new Integer[]{20},-2.8904911f,-79.0066653f,false));
+        stops.add(new Stop("Pedro Leon and Nicanor Merchan",new Integer[]{20},-2.8873363f,-79.00775f,false));
+        stops.add(new Stop("Avenida Del Chofer and Ave de las Americas",new Integer[]{20},-2.886541f,-79.009448f,false));
+        stops.add(new Stop("Avenida del Chofer",new Integer[]{20},-2.8861266f,-79.0151322f,false));
+        stops.add(new Stop("Avenida Del Chofer and Espadana",new Integer[]{20},-2.8877077f,-79.0143018f,false));
+        stops.add(new Stop("Alexander Humboldt and Avenida del Chofer",new Integer[]{20},-2.8874225f,-79.011947f,false));
+        stops.add(new Stop("Nicanor Merchan and Tarqui",new Integer[]{20},-2.8886679f,-79.0066981f,false));
+        stops.add(new Stop("Hurtado de Mendoza and Los Andes",new Integer[]{20},-2.8877303f,-78.9790097f,false));
+        stops.add(new Stop("Hurtado de Mendoza and Huila",new Integer[]{20},-2.8853703f,-78.97620410000002f,false));
+        stops.add(new Stop("Pan de Azucar",new Integer[]{20},-2.886691f,-78.9780682f,false));
 
         // Al Este
 
-        stops.add(new Stop("Monay Shopping Mall",new int[]{3,15,50},-2.896977f, -78.976343f,true));
-        stops.add(new Stop("Urbanizacion Rio Sol",new int[]{3},-2.897656f, -78.979771f,true));
-        stops.add(new Stop("Curtiembre",new int[]{3},-2.8943872f,-78.9707324f,true));
-        stops.add(new Stop("Los Eucaliptos",new int[]{3},-2.8909127f,-78.967259f,true));
-        stops.add(new Stop("Riberas del Tomebamba",new int[]{3},-2.8924182f, -78.9688374f,true));
-        stops.add(new Stop("Gran Aki",new int[]{3,15,50},-2.898401f, -78.981908f,true));
-        stops.add(new Stop("Max Uhle",new int[]{3},-2.899191f, -78.984065f,true));
-        stops.add(new Stop("Puente de Balzay",new int[]{3,8},-2.886427f,-79.044829f,true));
-        stops.add(new Stop("Gonzales Suarez Avenue",new int[]{3},-2.9001345f,-78.9870027f,true));
-        stops.add(new Stop("Gonzales Suarez and Paseo de los Canaris",new int[]{3},-2.8991688f,-78.9840281f,true));
-        stops.add(new Stop("Ciudadela Retamas Bajas",new int[]{3,15,50},-2.8976499f,-78.9798036f,true));
-        stops.add(new Stop("Puente Del Vado and Otorongo Plaza",new int[]{3,8,20},-2.8983623f,-79.0111556f,true));
-        stops.add(new Stop("Manuel Vega and Calle Larga",new int[]{3,5},-2.9045714f,-78.9990703f,true));
-        stops.add(new Stop("Manuel Vega and Mariscal Sucre",new int[]{3,5},-2.8997126000000004f,-78.9981111f,true));
-        stops.add(new Stop("Virgen del Milagro",new int[]{3,8},-2.8878342f,-79.0381457f,true));
-        stops.add(new Stop("Colegio Ciudad de Cuenca",new int[]{3,8},-2.888919f,-79.0344337f,true));
-        stops.add(new Stop("Hotel Oro Verde",new int[]{3,8,50},-2.8898703f,-79.0309365f,true));
-        stops.add(new Stop("Ordonez Lasso and Los Cedros",new int[]{3,8,50},-2.8903555f,-79.0291836f,true));
-        stops.add(new Stop("Gas Station",new int[]{3,8,50},-2.8911074000000005f,-79.02496240000002f,true));
-        stops.add(new Stop("El Punto",new int[]{3,8},-2.8893019f,-79.0219091f,true));
-        stops.add(new Stop("Ave De Las Americas and Alfonzo Andrade",new int[]{3,8},-2.8891309f,-79.0192439f,true));
-        stops.add(new Stop("3 De Noviembre Avenue",new int[]{3,8,50},-2.8928393f,-79.018436f,true));
-        stops.add(new Stop("Feria Libre Market",new int[]{7,15},-2.8985401f,-79.0258834f,true));
-        stops.add(new Stop("Avenida 10 de Agosto",new int[]{15},-2.904154f,-79.0251786f,true));
-        stops.add(new Stop("Perezpata Church",new int[]{3,15},-2.8998786f,-78.9883679f,true));
-        stops.add(new Stop("Gonzales Suarez Roundabout",new int[]{15},-2.8999081f,-78.9863656f,true));
-        stops.add(new Stop("Paseo de los Canaris",new int[]{15,50},-2.89915f,-78.983945f,true));
-        stops.add(new Stop("Monay Bridge",new int[]{15,50},-2.8989357f,-78.973817f,true));
-        stops.add(new Stop("Unidad Nacional and Calle Guayas",new int[]{15},-2.9020855f,-79.0229033f,true));
-        stops.add(new Stop("The Stadium",new int[]{15},-2.9072161f,-79.0068354f,true));
-        stops.add(new Stop("La Madre Park",new int[]{7,15},-2.9055917f,-79.0041044f,true));
-        stops.add(new Stop("Milenium Plaza Mall",new int[]{7,15},-2.9051096f,-79.0020475f,true));
-        stops.add(new Stop("Santa Ana Clinic",new int[]{7,15},-2.9074567f,-78.9989284f,true));
-        stops.add(new Stop("El Vergel Church",new int[]{7,15},-2.9104128f,-78.9962238f,true));
-        stops.add(new Stop("Regional Hospital",new int[]{7,15},-2.9104526f,-78.9944983f,true));
-        stops.add(new Stop("Pumapungo Avenue",new int[]{7,15},-2.9094655f,-78.9946108f,true));
-        stops.add(new Stop("Huaynacapac Avenue",new int[]{7,15},-2.9086631f,-78.9958466f,true));
-        stops.add(new Stop("Banco Central",new int[]{7,15},-2.9056294f,-78.9963604f,true));
-        stops.add(new Stop("Escuela Teresa Valse",new int[]{7,15},-2.9027252f,-78.99665770000001f,true));
-        stops.add(new Stop("Unidad Nacional Roundabout",new int[]{15},-2.9036634f,-79.0245626f,true));
-        stops.add(new Stop("San Blas",new int[]{7,15},-2.8989718f,-78.99659260000001f,true));
-        stops.add(new Stop("Garcia Moreno and Gonzales Suarez Avenue",new int[]{15},-2.8983707f,-78.9941399f,true));
-        stops.add(new Stop("Cementerio Municipal",new int[]{3,15},-2.8988103f,-78.9919082f,true));
-        stops.add(new Stop("Guapondelig Avenue",new int[]{15},-2.8991855f,-78.9903308f,true));
-        stops.add(new Stop("Avenida 10 de Agosto",new int[]{15},-2.9063576f,-79.023413f,true));
-        stops.add(new Stop("Hortencia Mata",new int[]{15},-2.9071972f,-79.0213502f,true));
-        stops.add(new Stop("Pichincha",new int[]{15},-2.9083645f,-79.0176402f,true));
-        stops.add(new Stop("Avenida 12 de Octubre",new int[]{15},-2.9089466f,-79.0157837f,true));
-        stops.add(new Stop("Juan Iniguez",new int[]{15},-2.9099377f,-79.0129124f,true));
-        stops.add(new Stop("Virgen del Bronze Church",new int[]{15},-2.9106714f,-79.010043f,true));
-        stops.add(new Stop("Colegio La Salle",new int[]{15},-2.9107561f,-79.0082402f,true));
-        stops.add(new Stop("Avenida Loja",new int[]{5},-2.9135584f,-79.0308205f,true));
-        stops.add(new Stop("Banco de la Vivienda",new int[]{5,20},-2.8966025f,-78.9845189f,true));
-        stops.add(new Stop("Cordillera",new int[]{5,20},-2.8953756f,-78.981759f,true));
-        stops.add(new Stop("Ciudadela UNE",new int[]{5,20},-2.8942237f,-78.9782131f,true));
-        stops.add(new Stop("Avenida Los Andes",new int[]{5,20},-2.8934415f,-78.9759386f,true));
-        stops.add(new Stop("Complejo Totoracocha",new int[]{5,20},-2.891561f,-78.9761022f,true));
-        stops.add(new Stop("Los Andes and Totoracocha",new int[]{5,20},-2.8890617f,-78.97741650000002f,true));
-        stops.add(new Stop("De Los Puruhaes",new int[]{5},-2.8889706f,-78.9760405f,true));
-        stops.add(new Stop("Del Condor and Totoracocha",new int[]{5},-2.8900957f,-78.9740208f,true));
-        stops.add(new Stop("Francisco Orellana",new int[]{5},-2.9146207f,-79.027845f,true));
-        stops.add(new Stop("Stadium Roundabout",new int[]{5},-2.9059855f,-79.0069487f,true));
-        stops.add(new Stop("Banco del Pichincha",new int[]{5},-2.902852f,-79.0060726f,true));
-        stops.add(new Stop("University of Cuenca",new int[]{5},-2.8998621f,-79.008923f,true));
-        stops.add(new Stop("10 De Agosto Food Market",new int[]{3,5,20},-2.8995824f,-79.0080453f,true));
-        stops.add(new Stop("Calle Larga and Benigno Malo",new int[]{3,5},-2.9009124f,-79.005834f,true));
-        stops.add(new Stop("Calle Larga and Hermano Miguel",new int[]{3,5},-2.9023873f,-79.0031814f,true));
-        stops.add(new Stop("Luis Cordero School",new int[]{3,5},-2.9029926f,-78.9987345f,true));
-        stops.add(new Stop("Sucre and Huaynacapac",new int[]{3,5,20},-2.899852f,-78.9969884f,true));
-        stops.add(new Stop("Don Bosco and 12 De Octubre",new int[]{5},-2.9159934f,-79.0227887f,true));
-        stops.add(new Stop("Juan Jose Flores and Garcia Moreno",new int[]{3,5,20,50},-2.9005788f,-78.9938789f,true));
-        stops.add(new Stop("12 de Abril Food Market",new int[]{3,5,20,50},-2.9010763f,-78.9920717f,true));
-        stops.add(new Stop("Cementerio",new int[]{5,20},-2.8993562f,-78.990655f,true));
-        stops.add(new Stop("Guapondelig",new int[]{5,20},-2.8980071f,-78.98924710000001f,true));
-        stops.add(new Stop("Chan Chan",new int[]{5,20},-2.8978365f,-78.9867449f,true));
-        stops.add(new Stop("Iberia Park",new int[]{5},-2.9157816f,-79.0203856f,true));
-        stops.add(new Stop("Fernando de Aragon",new int[]{5},-2.915603f,-79.0182686f,true));
-        stops.add(new Stop("Colegio Tecnico Salesiano",new int[]{5},-2.9154006f,-79.015747f,true));
-        stops.add(new Stop("Pablo Picasso",new int[]{5},-2.915648f,-79.0129534f,true));
-        stops.add(new Stop("Tres Puentes",new int[]{5},-2.9158783f,-79.0104263f,true));
-        stops.add(new Stop("Colegio Bilingue",new int[]{5},-2.9145952f,-79.0092671f,true));
-        stops.add(new Stop("Colegio La Salle",new int[]{5},-2.9107194f,-79.0082234f,true));
-        stops.add(new Stop("Redondel",new int[]{7},-2.9113367f,-79.0205727f,true));
-        stops.add(new Stop("Gas Station",new int[]{7},-2.9136716f,-79.02178290000002f,true));
-        stops.add(new Stop("Lope De Vega",new int[]{7},-2.9103454f,-79.0211415f,true));
-        stops.add(new Stop("Edwin Sacoto",new int[]{7},-2.8967938f,-79.0235199f,true));
-        stops.add(new Stop("El Batan",new int[]{7},-2.8956214f,-79.0232253f,true));
-        stops.add(new Stop("Coliseo",new int[]{7},-2.8948596f,-79.020446f,true));
-        stops.add(new Stop("Imbabura and 12 de Abril",new int[]{7},-2.8955423f,-79.0169366f,true));
-        stops.add(new Stop("Guayas and 12 de Abril",new int[]{7},-2.8971816f,-79.0142837f,true));
-        stops.add(new Stop("Puente del Vado",new int[]{7},-2.8989194f,-79.01102f,true));
-        stops.add(new Stop("University of Cuenca",new int[]{7},-2.900085f,-79.0090603f,true));
-        stops.add(new Stop("Centenario",new int[]{7},-2.9024111f,-79.0064439f,true));
-        stops.add(new Stop("Centro Educativo Los Andes",new int[]{7},-2.9100416f,-79.0244845f,true));
-        stops.add(new Stop("Gonzales Suarez",new int[]{7},-2.8976597f,-78.9954131f,true));
-        stops.add(new Stop("Chola Cuencana",new int[]{7},-2.8954024f,-78.9953659f,true));
-        stops.add(new Stop("Urbanizacion La Piedra",new int[]{7},-2.9099128f,-79.0278681f,true));
-        stops.add(new Stop("Nunez De Bonilla",new int[]{7},-2.8944894000000003f,-78.9948101f,true));
-        stops.add(new Stop("Terminal Terrestre",new int[]{7},-2.8920771f,-78.9912788f,true));
-        stops.add(new Stop("IECE",new int[]{7},-2.8910313f,-78.9896946f,true));
-        stops.add(new Stop("Airport",new int[]{7},-2.8896933f,-78.987727f,true));
-        stops.add(new Stop("Embotelladora Azuaya",new int[]{7},-2.8868027f,-78.9856496f,true));
-        stops.add(new Stop("Gas Station",new int[]{7},-2.884554f,-78.982797f,true));
-        stops.add(new Stop("Milchichig Bridge",new int[]{7},-2.8824894f,-78.977334f,true));
-        stops.add(new Stop("Industrial Park",new int[]{7},-2.8818454f,-78.9741458f,true));
-        stops.add(new Stop("Plateria Narvaez",new int[]{7},-2.8755331f,-78.9810877f,true));
-        stops.add(new Stop("Loja",new int[]{7},-2.9080091000000006f,-79.0265684f,true));
-        stops.add(new Stop("Cooperativa Jep",new int[]{7},-2.8728686f,-78.9804541f,true));
-        stops.add(new Stop("Ciudadela Uncovia",new int[]{7},-2.871078f,-78.981641f,true));
-        stops.add(new Stop("Uncometro",new int[]{7},-2.8699967f,-78.9823165f,true));
-        stops.add(new Stop("De Los Chasquis",new int[]{7},-2.8678599f,-78.9835984f,true));
-        stops.add(new Stop("Iglesia Envangelica",new int[]{7},-2.8654266f,-78.9849114f,true));
-        stops.add(new Stop("Parque",new int[]{7},-2.8647979f,-78.9862709f,true));
-        stops.add(new Stop("Escuela Isabel Moscoso",new int[]{7},-2.865429f,-78.9878454f,true));
-        stops.add(new Stop("Las Orchideas Church",new int[]{7},-2.8644095f,-78.9896174f,true));
-        stops.add(new Stop("Ciudadela Las Orchideas",new int[]{7},-2.8640106f,-78.9908382f,true));
-        stops.add(new Stop("Plataforma 2",new int[]{7},-2.865439f,-78.990245f,true));
-        stops.add(new Stop("Loja And Primero De Mayo",new int[]{7},-2.9074202f,-79.0269615f,true));
-        stops.add(new Stop("Last Stop - End of the line",new int[]{7},-2.8672778f,-78.9910066f,true));
-        stops.add(new Stop("Puente Yanuncay",new int[]{7},-2.90702f,-79.0331551f,true));
-        stops.add(new Stop("Dragon Park",new int[]{7},-2.9038318f,-79.0312657f,true));
-        stops.add(new Stop("CREA",new int[]{7},-2.901823f,-79.029018f,true));
-        stops.add(new Stop("Mall del Rio",new int[]{7},-2.9200362f,-79.0165633f,true));
-        stops.add(new Stop("Politecnica Salesiano",new int[]{7},-2.9161949000000003f,-79.0165982f,true));
-        stops.add(new Stop("Fernando de Aragon",new int[]{7},-2.915402f,-79.0180761f,true));
-        stops.add(new Stop("Iberia Park",new int[]{7},-2.9155922f,-79.0200797f,true));
-        stops.add(new Stop("Avenida 12 de Octubre",new int[]{7},-2.9158199f,-79.0227592f,true));
-        stops.add(new Stop("Sucre and Miguel Heredia",new int[]{50},-2.8956134f,-79.0126639f,true));
-        stops.add(new Stop("Bolivar and Miguel Velez",new int[]{50},-2.8951857f,-79.0117435f,true));
-        stops.add(new Stop("Lamar",new int[]{50},-2.8932395f,-79.0113424f,true));
-        stops.add(new Stop("Sangurima and Miguel Velez",new int[]{50},-2.8921461f,-79.0109744f,true));
-        stops.add(new Stop("Sangurima and Tarqui",new int[]{50},-2.8929873f,-79.0075389f,true));
-        stops.add(new Stop("Marianitas",new int[]{50},-2.8937203000000005f,-79.0048964f,true));
-        stops.add(new Stop("Luis Cordero",new int[]{50},-2.8941382f,-79.0031208f,true));
-        stops.add(new Stop("Plaza Rotary",new int[]{50},-2.8948824f,-78.9997377f,true));
-        stops.add(new Stop("Chola Cuencana",new int[]{50},-2.8952206f,-78.9979806f,true));
-        stops.add(new Stop("Hurtado de Mendoza and Garcia Moreno",new int[]{50},-2.896985f,-78.99373f,true));
-        stops.add(new Stop("Gonzales Suarez and Garcia Moreno",new int[]{50},-2.8985279f,-78.9939932f,true));
-        stops.add(new Stop("Jijon and Caamano",new int[]{50},-2.901618f,-78.9900324f,true));
-        stops.add(new Stop("Camilo Ponce and Paseo de los Canaris",new int[]{50},-2.9032379f,-78.988032f,true));
-        stops.add(new Stop("Camilo Ponce and Jorge Carrera",new int[]{50},-2.9044629f,-78.9869102f,true));
-        stops.add(new Stop("Medardo Angel Silva",new int[]{50},-2.9054043f,-78.9860719f,true));
-        stops.add(new Stop("Pumapungo",new int[]{50},-2.9070338f,-78.9846483f,true));
-        stops.add(new Stop("Empresa Electrica",new int[]{50},-2.9046297f,-78.9839632f,true));
-        stops.add(new Stop("Max Uhle Andrade",new int[]{50},-2.9018557f,-78.9843614f,true));
-        stops.add(new Stop("Banco del Pichincha",new int[]{50},-2.8928240000000005f,-79.0249935f,true));
-        stops.add(new Stop("General Escandon",new int[]{50},-2.895295f,-79.025069f,true));
-        stops.add(new Stop("Remigio Crespo Avenua and Edwin Sacoto",new int[]{50},-2.8975404f,-79.0235586f,true));
-        stops.add(new Stop("Totems",new int[]{50},-2.8979957f,-79.02029080000001f,true));
-        stops.add(new Stop("Coliseum",new int[]{50},-2.8955837f,-79.0190851f,true));
-        stops.add(new Stop("Colegio Sagrados Corazones",new int[]{3,8,50},-2.8951142f,-79.0157444f,true));
-        stops.add(new Stop("10 de Agosto Market",new int[]{8},-2.8985688f,-79.0081296f,true));
-        stops.add(new Stop("Cenaculo",new int[]{8},-2.8965082f,-79.0077688f,true));
-        stops.add(new Stop("Colegio San Francisco",new int[]{8},-2.8944110000000003f,-79.007389f,true));
-        stops.add(new Stop("Tarqui And Pio Bravo",new int[]{8},-2.891686f,-79.0068669f,true));
-        stops.add(new Stop("Maria Auxiliadora Church",new int[]{8},-2.8915483f,-79.0051407f,true));
-        stops.add(new Stop("Escuela Francisca Davila",new int[]{8},-2.8921025f,-79.0031887f,true));
-        stops.add(new Stop("9 de Octubre Market",new int[]{8},-2.8926045f,-79.000637f,true));
-        stops.add(new Stop("Hospital Catolico",new int[]{8},-2.8932362f,-78.9977194f,true));
-        stops.add(new Stop("Pasamaneria",new int[]{8},-2.892947f,-78.9962904f,true));
-        stops.add(new Stop("Terminal Terrestre - Bus Terminal",new int[]{8},-2.8917653f,-78.9944112f,true));
-        stops.add(new Stop("Almacenes Juan Eljuri",new int[]{8},-2.890947f,-78.9913722f,true));
-        stops.add(new Stop("Elia Liut",new int[]{8},-2.8885812f,-78.9878739f,true));
-        stops.add(new Stop("Politecnica Salesiana University",new int[]{8},-2.8870501f,-78.9890368f,true));
-        stops.add(new Stop("Calle Vieja",new int[]{8},-2.8853018000000006f,-78.9875423f,true));
-        stops.add(new Stop("Avenida de Las Americas",new int[]{8},-2.8842184f,-78.9898378f,true));
-        stops.add(new Stop("Avenida del Chofer and Avenida Abelardo J. Andrade",new int[]{20},-2.8848628f,-79.01569120000002f,true));
-        stops.add(new Stop("Avenida Chofer and De La Espadana",new int[]{20},-2.8878364f,-79.0142447f,true));
-        stops.add(new Stop("Alexander Humboldt And Avenida del Chofer",new int[]{20},-2.8875449f,-79.0119202f,true));
-        stops.add(new Stop("Avenida del Chofer and Avenida De Las Americas",new int[]{20},-2.886702f,-79.0094657f,true));
-        stops.add(new Stop("Hernando de la Cruz and Juan Montalvo",new int[]{20},-2.8883324f,-79.0074369f,true));
-        stops.add(new Stop("Vega Munoz and Juan Montalvo",new int[]{20},-2.8916464f,-79.0080038f,true));
-        stops.add(new Stop("Gran Colombia and Juan Montalvo",new int[]{20},-2.8945410000000003f,-79.008542f,true));
-        stops.add(new Stop("Presidente Cordova and Juan Montalvo",new int[]{20},-2.8976305f,-79.0091129f,true));
-        stops.add(new Stop("Juan Jaramillo and Benigno Malo",new int[]{20},-2.8998069f,-79.0055505f,true));
-        stops.add(new Stop("Borrerro and Juan Jaramillo",new int[]{20},-2.9002284f,-79.0037827f,true));
-        stops.add(new Stop("Vargas Machuca and Juan Jaramillo",new int[]{20},-2.9009891f,-79.0006401f,true));
-        stops.add(new Stop("Victor J. Cuesta Park",new int[]{20},-2.8998004f,-79.0002043f,true));
-        stops.add(new Stop("Hurtado de Mendoza and Los Andes",new int[]{20},-2.8876962f,-78.9788395f,true));
-        stops.add(new Stop("Hurtado de Mendoza and Pan de Azucar",new int[]{20},-2.8868002f,-78.9779629f,true));
-        stops.add(new Stop("Frente Huila",new int[]{20},-2.8855261f,-78.9761891f,true));
-        stops.add(new Stop("Presidente Cordova and Colonel Talbot",new int[]{20},-2.8969561000000006f,-79.0113544f,true));
+        stops.add(new Stop("Monay Shopping Mall",new Integer[]{3,15,50},-2.896977f, -78.976343f,true));
+        stops.add(new Stop("Urbanizacion Rio Sol",new Integer[]{3},-2.897656f, -78.979771f,true));
+        stops.add(new Stop("Curtiembre",new Integer[]{3},-2.8943872f,-78.9707324f,true));
+        stops.add(new Stop("Los Eucaliptos",new Integer[]{3},-2.8909127f,-78.967259f,true));
+        stops.add(new Stop("Riberas del Tomebamba",new Integer[]{3},-2.8924182f, -78.9688374f,true));
+        stops.add(new Stop("Gran Aki",new Integer[]{3,15,50},-2.898401f, -78.981908f,true));
+        stops.add(new Stop("Max Uhle",new Integer[]{3},-2.899191f, -78.984065f,true));
+        stops.add(new Stop("Puente de Balzay",new Integer[]{3,8},-2.886427f,-79.044829f,true));
+        stops.add(new Stop("Gonzales Suarez Avenue",new Integer[]{3},-2.9001345f,-78.9870027f,true));
+        stops.add(new Stop("Gonzales Suarez and Paseo de los Canaris",new Integer[]{3},-2.8991688f,-78.9840281f,true));
+        stops.add(new Stop("Ciudadela Retamas Bajas",new Integer[]{3,15,50},-2.8976499f,-78.9798036f,true));
+        stops.add(new Stop("Puente Del Vado and Otorongo Plaza",new Integer[]{3,8,20},-2.8983623f,-79.0111556f,true));
+        stops.add(new Stop("Manuel Vega and Calle Larga",new Integer[]{3,5},-2.9045714f,-78.9990703f,true));
+        stops.add(new Stop("Manuel Vega and Mariscal Sucre",new Integer[]{3,5},-2.8997126000000004f,-78.9981111f,true));
+        stops.add(new Stop("Virgen del Milagro",new Integer[]{3,8},-2.8878342f,-79.0381457f,true));
+        stops.add(new Stop("Colegio Ciudad de Cuenca",new Integer[]{3,8},-2.888919f,-79.0344337f,true));
+        stops.add(new Stop("Hotel Oro Verde",new Integer[]{3,8,50},-2.8898703f,-79.0309365f,true));
+        stops.add(new Stop("Ordonez Lasso and Los Cedros",new Integer[]{3,8,50},-2.8903555f,-79.0291836f,true));
+        stops.add(new Stop("Gas Station",new Integer[]{3,8,50},-2.8911074000000005f,-79.02496240000002f,true));
+        stops.add(new Stop("El Punto",new Integer[]{3,8},-2.8893019f,-79.0219091f,true));
+        stops.add(new Stop("Ave De Las Americas and Alfonzo Andrade",new Integer[]{3,8},-2.8891309f,-79.0192439f,true));
+        stops.add(new Stop("3 De Noviembre Avenue",new Integer[]{3,8,50},-2.8928393f,-79.018436f,true));
+        stops.add(new Stop("Feria Libre Market",new Integer[]{7,15},-2.8985401f,-79.0258834f,true));
+        stops.add(new Stop("Avenida 10 de Agosto",new Integer[]{15},-2.904154f,-79.0251786f,true));
+        stops.add(new Stop("Perezpata Church",new Integer[]{3,15},-2.8998786f,-78.9883679f,true));
+        stops.add(new Stop("Gonzales Suarez Roundabout",new Integer[]{15},-2.8999081f,-78.9863656f,true));
+        stops.add(new Stop("Paseo de los Canaris",new Integer[]{15,50},-2.89915f,-78.983945f,true));
+        stops.add(new Stop("Monay Bridge",new Integer[]{15,50},-2.8989357f,-78.973817f,true));
+        stops.add(new Stop("Unidad Nacional and Calle Guayas",new Integer[]{15},-2.9020855f,-79.0229033f,true));
+        stops.add(new Stop("The Stadium",new Integer[]{15},-2.9072161f,-79.0068354f,true));
+        stops.add(new Stop("La Madre Park",new Integer[]{7,15},-2.9055917f,-79.0041044f,true));
+        stops.add(new Stop("Milenium Plaza Mall",new Integer[]{7,15},-2.9051096f,-79.0020475f,true));
+        stops.add(new Stop("Santa Ana Clinic",new Integer[]{7,15},-2.9074567f,-78.9989284f,true));
+        stops.add(new Stop("El Vergel Church",new Integer[]{7,15},-2.9104128f,-78.9962238f,true));
+        stops.add(new Stop("Regional Hospital",new Integer[]{7,15},-2.9104526f,-78.9944983f,true));
+        stops.add(new Stop("Pumapungo Avenue",new Integer[]{7,15},-2.9094655f,-78.9946108f,true));
+        stops.add(new Stop("Huaynacapac Avenue",new Integer[]{7,15},-2.9086631f,-78.9958466f,true));
+        stops.add(new Stop("Banco Central",new Integer[]{7,15},-2.9056294f,-78.9963604f,true));
+        stops.add(new Stop("Escuela Teresa Valse",new Integer[]{7,15},-2.9027252f,-78.99665770000001f,true));
+        stops.add(new Stop("Unidad Nacional Roundabout",new Integer[]{15},-2.9036634f,-79.0245626f,true));
+        stops.add(new Stop("San Blas",new Integer[]{7,15},-2.8989718f,-78.99659260000001f,true));
+        stops.add(new Stop("Garcia Moreno and Gonzales Suarez Avenue",new Integer[]{15},-2.8983707f,-78.9941399f,true));
+        stops.add(new Stop("Cementerio Municipal",new Integer[]{3,15},-2.8988103f,-78.9919082f,true));
+        stops.add(new Stop("Guapondelig Avenue",new Integer[]{15},-2.8991855f,-78.9903308f,true));
+        stops.add(new Stop("Avenida 10 de Agosto",new Integer[]{15},-2.9063576f,-79.023413f,true));
+        stops.add(new Stop("Hortencia Mata",new Integer[]{15},-2.9071972f,-79.0213502f,true));
+        stops.add(new Stop("Pichincha",new Integer[]{15},-2.9083645f,-79.0176402f,true));
+        stops.add(new Stop("Avenida 12 de Octubre",new Integer[]{15},-2.9089466f,-79.0157837f,true));
+        stops.add(new Stop("Juan Iniguez",new Integer[]{15},-2.9099377f,-79.0129124f,true));
+        stops.add(new Stop("Virgen del Bronze Church",new Integer[]{15},-2.9106714f,-79.010043f,true));
+        stops.add(new Stop("Colegio La Salle",new Integer[]{15},-2.9107561f,-79.0082402f,true));
+        stops.add(new Stop("Avenida Loja",new Integer[]{5},-2.9135584f,-79.0308205f,true));
+        stops.add(new Stop("Banco de la Vivienda",new Integer[]{5,20},-2.8966025f,-78.9845189f,true));
+        stops.add(new Stop("Cordillera",new Integer[]{5,20},-2.8953756f,-78.981759f,true));
+        stops.add(new Stop("Ciudadela UNE",new Integer[]{5,20},-2.8942237f,-78.9782131f,true));
+        stops.add(new Stop("Avenida Los Andes",new Integer[]{5,20},-2.8934415f,-78.9759386f,true));
+        stops.add(new Stop("Complejo Totoracocha",new Integer[]{5,20},-2.891561f,-78.9761022f,true));
+        stops.add(new Stop("Los Andes and Totoracocha",new Integer[]{5,20},-2.8890617f,-78.97741650000002f,true));
+        stops.add(new Stop("De Los Puruhaes",new Integer[]{5},-2.8889706f,-78.9760405f,true));
+        stops.add(new Stop("Del Condor and Totoracocha",new Integer[]{5},-2.8900957f,-78.9740208f,true));
+        stops.add(new Stop("Francisco Orellana",new Integer[]{5},-2.9146207f,-79.027845f,true));
+        stops.add(new Stop("Stadium Roundabout",new Integer[]{5},-2.9059855f,-79.0069487f,true));
+        stops.add(new Stop("Banco del Pichincha",new Integer[]{5},-2.902852f,-79.0060726f,true));
+        stops.add(new Stop("University of Cuenca",new Integer[]{5},-2.8998621f,-79.008923f,true));
+        stops.add(new Stop("10 De Agosto Food Market",new Integer[]{3,5,20},-2.8995824f,-79.0080453f,true));
+        stops.add(new Stop("Calle Larga and Benigno Malo",new Integer[]{3,5},-2.9009124f,-79.005834f,true));
+        stops.add(new Stop("Calle Larga and Hermano Miguel",new Integer[]{3,5},-2.9023873f,-79.0031814f,true));
+        stops.add(new Stop("Luis Cordero School",new Integer[]{3,5},-2.9029926f,-78.9987345f,true));
+        stops.add(new Stop("Sucre and Huaynacapac",new Integer[]{3,5,20},-2.899852f,-78.9969884f,true));
+        stops.add(new Stop("Don Bosco and 12 De Octubre",new Integer[]{5},-2.9159934f,-79.0227887f,true));
+        stops.add(new Stop("Juan Jose Flores and Garcia Moreno",new Integer[]{3,5,20,50},-2.9005788f,-78.9938789f,true));
+        stops.add(new Stop("12 de Abril Food Market",new Integer[]{3,5,20,50},-2.9010763f,-78.9920717f,true));
+        stops.add(new Stop("Cementerio",new Integer[]{5,20},-2.8993562f,-78.990655f,true));
+        stops.add(new Stop("Guapondelig",new Integer[]{5,20},-2.8980071f,-78.98924710000001f,true));
+        stops.add(new Stop("Chan Chan",new Integer[]{5,20},-2.8978365f,-78.9867449f,true));
+        stops.add(new Stop("Iberia Park",new Integer[]{5},-2.9157816f,-79.0203856f,true));
+        stops.add(new Stop("Fernando de Aragon",new Integer[]{5},-2.915603f,-79.0182686f,true));
+        stops.add(new Stop("Colegio Tecnico Salesiano",new Integer[]{5},-2.9154006f,-79.015747f,true));
+        stops.add(new Stop("Pablo Picasso",new Integer[]{5},-2.915648f,-79.0129534f,true));
+        stops.add(new Stop("Tres Puentes",new Integer[]{5},-2.9158783f,-79.0104263f,true));
+        stops.add(new Stop("Colegio Bilingue",new Integer[]{5},-2.9145952f,-79.0092671f,true));
+        stops.add(new Stop("Colegio La Salle",new Integer[]{5},-2.9107194f,-79.0082234f,true));
+        stops.add(new Stop("Redondel",new Integer[]{7},-2.9113367f,-79.0205727f,true));
+        stops.add(new Stop("Gas Station",new Integer[]{7},-2.9136716f,-79.02178290000002f,true));
+        stops.add(new Stop("Lope De Vega",new Integer[]{7},-2.9103454f,-79.0211415f,true));
+        stops.add(new Stop("Edwin Sacoto",new Integer[]{7},-2.8967938f,-79.0235199f,true));
+        stops.add(new Stop("El Batan",new Integer[]{7},-2.8956214f,-79.0232253f,true));
+        stops.add(new Stop("Coliseo",new Integer[]{7},-2.8948596f,-79.020446f,true));
+        stops.add(new Stop("Imbabura and 12 de Abril",new Integer[]{7},-2.8955423f,-79.0169366f,true));
+        stops.add(new Stop("Guayas and 12 de Abril",new Integer[]{7},-2.8971816f,-79.0142837f,true));
+        stops.add(new Stop("Puente del Vado",new Integer[]{7},-2.8989194f,-79.01102f,true));
+        stops.add(new Stop("University of Cuenca",new Integer[]{7},-2.900085f,-79.0090603f,true));
+        stops.add(new Stop("Centenario",new Integer[]{7},-2.9024111f,-79.0064439f,true));
+        stops.add(new Stop("Centro Educativo Los Andes",new Integer[]{7},-2.9100416f,-79.0244845f,true));
+        stops.add(new Stop("Gonzales Suarez",new Integer[]{7},-2.8976597f,-78.9954131f,true));
+        stops.add(new Stop("Chola Cuencana",new Integer[]{7},-2.8954024f,-78.9953659f,true));
+        stops.add(new Stop("Urbanizacion La Piedra",new Integer[]{7},-2.9099128f,-79.0278681f,true));
+        stops.add(new Stop("Nunez De Bonilla",new Integer[]{7},-2.8944894000000003f,-78.9948101f,true));
+        stops.add(new Stop("Terminal Terrestre",new Integer[]{7},-2.8920771f,-78.9912788f,true));
+        stops.add(new Stop("IECE",new Integer[]{7},-2.8910313f,-78.9896946f,true));
+        stops.add(new Stop("Airport",new Integer[]{7},-2.8896933f,-78.987727f,true));
+        stops.add(new Stop("Embotelladora Azuaya",new Integer[]{7},-2.8868027f,-78.9856496f,true));
+        stops.add(new Stop("Gas Station",new Integer[]{7},-2.884554f,-78.982797f,true));
+        stops.add(new Stop("Milchichig Bridge",new Integer[]{7},-2.8824894f,-78.977334f,true));
+        stops.add(new Stop("Industrial Park",new Integer[]{7},-2.8818454f,-78.9741458f,true));
+        stops.add(new Stop("Plateria Narvaez",new Integer[]{7},-2.8755331f,-78.9810877f,true));
+        stops.add(new Stop("Loja",new Integer[]{7},-2.9080091000000006f,-79.0265684f,true));
+        stops.add(new Stop("Cooperativa Jep",new Integer[]{7},-2.8728686f,-78.9804541f,true));
+        stops.add(new Stop("Ciudadela Uncovia",new Integer[]{7},-2.871078f,-78.981641f,true));
+        stops.add(new Stop("Uncometro",new Integer[]{7},-2.8699967f,-78.9823165f,true));
+        stops.add(new Stop("De Los Chasquis",new Integer[]{7},-2.8678599f,-78.9835984f,true));
+        stops.add(new Stop("Iglesia Envangelica",new Integer[]{7},-2.8654266f,-78.9849114f,true));
+        stops.add(new Stop("Parque",new Integer[]{7},-2.8647979f,-78.9862709f,true));
+        stops.add(new Stop("Escuela Isabel Moscoso",new Integer[]{7},-2.865429f,-78.9878454f,true));
+        stops.add(new Stop("Las Orchideas Church",new Integer[]{7},-2.8644095f,-78.9896174f,true));
+        stops.add(new Stop("Ciudadela Las Orchideas",new Integer[]{7},-2.8640106f,-78.9908382f,true));
+        stops.add(new Stop("Plataforma 2",new Integer[]{7},-2.865439f,-78.990245f,true));
+        stops.add(new Stop("Loja And Primero De Mayo",new Integer[]{7},-2.9074202f,-79.0269615f,true));
+        stops.add(new Stop("Last Stop - End of the line",new Integer[]{7},-2.8672778f,-78.9910066f,true));
+        stops.add(new Stop("Puente Yanuncay",new Integer[]{7},-2.90702f,-79.0331551f,true));
+        stops.add(new Stop("Dragon Park",new Integer[]{7},-2.9038318f,-79.0312657f,true));
+        stops.add(new Stop("CREA",new Integer[]{7},-2.901823f,-79.029018f,true));
+        stops.add(new Stop("Mall del Rio",new Integer[]{7},-2.9200362f,-79.0165633f,true));
+        stops.add(new Stop("Politecnica Salesiano",new Integer[]{7},-2.9161949000000003f,-79.0165982f,true));
+        stops.add(new Stop("Fernando de Aragon",new Integer[]{7},-2.915402f,-79.0180761f,true));
+        stops.add(new Stop("Iberia Park",new Integer[]{7},-2.9155922f,-79.0200797f,true));
+        stops.add(new Stop("Avenida 12 de Octubre",new Integer[]{7},-2.9158199f,-79.0227592f,true));
+        stops.add(new Stop("Sucre and Miguel Heredia",new Integer[]{50},-2.8956134f,-79.0126639f,true));
+        stops.add(new Stop("Bolivar and Miguel Velez",new Integer[]{50},-2.8951857f,-79.0117435f,true));
+        stops.add(new Stop("Lamar",new Integer[]{50},-2.8932395f,-79.0113424f,true));
+        stops.add(new Stop("Sangurima and Miguel Velez",new Integer[]{50},-2.8921461f,-79.0109744f,true));
+        stops.add(new Stop("Sangurima and Tarqui",new Integer[]{50},-2.8929873f,-79.0075389f,true));
+        stops.add(new Stop("Marianitas",new Integer[]{50},-2.8937203000000005f,-79.0048964f,true));
+        stops.add(new Stop("Luis Cordero",new Integer[]{50},-2.8941382f,-79.0031208f,true));
+        stops.add(new Stop("Plaza Rotary",new Integer[]{50},-2.8948824f,-78.9997377f,true));
+        stops.add(new Stop("Chola Cuencana",new Integer[]{50},-2.8952206f,-78.9979806f,true));
+        stops.add(new Stop("Hurtado de Mendoza and Garcia Moreno",new Integer[]{50},-2.896985f,-78.99373f,true));
+        stops.add(new Stop("Gonzales Suarez and Garcia Moreno",new Integer[]{50},-2.8985279f,-78.9939932f,true));
+        stops.add(new Stop("Jijon and Caamano",new Integer[]{50},-2.901618f,-78.9900324f,true));
+        stops.add(new Stop("Camilo Ponce and Paseo de los Canaris",new Integer[]{50},-2.9032379f,-78.988032f,true));
+        stops.add(new Stop("Camilo Ponce and Jorge Carrera",new Integer[]{50},-2.9044629f,-78.9869102f,true));
+        stops.add(new Stop("Medardo Angel Silva",new Integer[]{50},-2.9054043f,-78.9860719f,true));
+        stops.add(new Stop("Pumapungo",new Integer[]{50},-2.9070338f,-78.9846483f,true));
+        stops.add(new Stop("Empresa Electrica",new Integer[]{50},-2.9046297f,-78.9839632f,true));
+        stops.add(new Stop("Max Uhle Andrade",new Integer[]{50},-2.9018557f,-78.9843614f,true));
+        stops.add(new Stop("Banco del Pichincha",new Integer[]{50},-2.8928240000000005f,-79.0249935f,true));
+        stops.add(new Stop("General Escandon",new Integer[]{50},-2.895295f,-79.025069f,true));
+        stops.add(new Stop("Remigio Crespo Avenua and Edwin Sacoto",new Integer[]{50},-2.8975404f,-79.0235586f,true));
+        stops.add(new Stop("Totems",new Integer[]{50},-2.8979957f,-79.02029080000001f,true));
+        stops.add(new Stop("Coliseum",new Integer[]{50},-2.8955837f,-79.0190851f,true));
+        stops.add(new Stop("Colegio Sagrados Corazones",new Integer[]{3,8,50},-2.8951142f,-79.0157444f,true));
+        stops.add(new Stop("10 de Agosto Market",new Integer[]{8},-2.8985688f,-79.0081296f,true));
+        stops.add(new Stop("Cenaculo",new Integer[]{8},-2.8965082f,-79.0077688f,true));
+        stops.add(new Stop("Colegio San Francisco",new Integer[]{8},-2.8944110000000003f,-79.007389f,true));
+        stops.add(new Stop("Tarqui And Pio Bravo",new Integer[]{8},-2.891686f,-79.0068669f,true));
+        stops.add(new Stop("Maria Auxiliadora Church",new Integer[]{8},-2.8915483f,-79.0051407f,true));
+        stops.add(new Stop("Escuela Francisca Davila",new Integer[]{8},-2.8921025f,-79.0031887f,true));
+        stops.add(new Stop("9 de Octubre Market",new Integer[]{8},-2.8926045f,-79.000637f,true));
+        stops.add(new Stop("Hospital Catolico",new Integer[]{8},-2.8932362f,-78.9977194f,true));
+        stops.add(new Stop("Pasamaneria",new Integer[]{8},-2.892947f,-78.9962904f,true));
+        stops.add(new Stop("Terminal Terrestre - Bus Terminal",new Integer[]{8},-2.8917653f,-78.9944112f,true));
+        stops.add(new Stop("Almacenes Juan Eljuri",new Integer[]{8},-2.890947f,-78.9913722f,true));
+        stops.add(new Stop("Elia Liut",new Integer[]{8},-2.8885812f,-78.9878739f,true));
+        stops.add(new Stop("Politecnica Salesiana University",new Integer[]{8},-2.8870501f,-78.9890368f,true));
+        stops.add(new Stop("Calle Vieja",new Integer[]{8},-2.8853018000000006f,-78.9875423f,true));
+        stops.add(new Stop("Avenida de Las Americas",new Integer[]{8},-2.8842184f,-78.9898378f,true));
+        stops.add(new Stop("Avenida del Chofer and Avenida Abelardo J. Andrade",new Integer[]{20},-2.8848628f,-79.01569120000002f,true));
+        stops.add(new Stop("Avenida Chofer and De La Espadana",new Integer[]{20},-2.8878364f,-79.0142447f,true));
+        stops.add(new Stop("Alexander Humboldt And Avenida del Chofer",new Integer[]{20},-2.8875449f,-79.0119202f,true));
+        stops.add(new Stop("Avenida del Chofer and Avenida De Las Americas",new Integer[]{20},-2.886702f,-79.0094657f,true));
+        stops.add(new Stop("Hernando de la Cruz and Juan Montalvo",new Integer[]{20},-2.8883324f,-79.0074369f,true));
+        stops.add(new Stop("Vega Munoz and Juan Montalvo",new Integer[]{20},-2.8916464f,-79.0080038f,true));
+        stops.add(new Stop("Gran Colombia and Juan Montalvo",new Integer[]{20},-2.8945410000000003f,-79.008542f,true));
+        stops.add(new Stop("Presidente Cordova and Juan Montalvo",new Integer[]{20},-2.8976305f,-79.0091129f,true));
+        stops.add(new Stop("Juan Jaramillo and Benigno Malo",new Integer[]{20},-2.8998069f,-79.0055505f,true));
+        stops.add(new Stop("Borrerro and Juan Jaramillo",new Integer[]{20},-2.9002284f,-79.0037827f,true));
+        stops.add(new Stop("Vargas Machuca and Juan Jaramillo",new Integer[]{20},-2.9009891f,-79.0006401f,true));
+        stops.add(new Stop("Victor J. Cuesta Park",new Integer[]{20},-2.8998004f,-79.0002043f,true));
+        stops.add(new Stop("Hurtado de Mendoza and Los Andes",new Integer[]{20},-2.8876962f,-78.9788395f,true));
+        stops.add(new Stop("Hurtado de Mendoza and Pan de Azucar",new Integer[]{20},-2.8868002f,-78.9779629f,true));
+        stops.add(new Stop("Frente Huila",new Integer[]{20},-2.8855261f,-78.9761891f,true));
+        stops.add(new Stop("Presidente Cordova and Colonel Talbot",new Integer[]{20},-2.8969561000000006f,-79.0113544f,true));
     }
 
     private void initializeRoutes() {
         routes = new HashMap<>();
-        routes.put(3, new ArrayList<Route>() {{
-            new Route(new float[][] {
+        routes.put(3, new Route(new float[][] {
                 {-2.890129f, -78.965771f},
                 {-2.890772f, -78.967316f},
                 {-2.891822f, -78.968496f},
@@ -642,10 +640,8 @@ public final class MapResources {
                 {-2.8901627f,-78.9653921f},
                 {-2.8900663f,-78.9650461f},
                 {-2.8900475f,-78.9648423f}
-            });
-        }});
-        routes.put(5, new ArrayList<Route>() {{
-            new Route (
+            }));
+        routes.put(5, new Route (
                 new float[][] {
                     {-2.890002f,-78.973656f},
                     {-2.8901386f,-78.973892f},
@@ -934,10 +930,8 @@ public final class MapResources {
                     {-2.8898305f,-78.97331f},
                     {-2.8896109f,-78.97291570000002f}
                 }
-            );
-        }});
-        routes.put(7, new ArrayList<Route>() {{
-            new Route (
+            ));
+        routes.put(7, new Route (
                 new float[][] {
                     {-2.884568f,-78.98953000000002f},
                     {-2.88525f,-78.987901f},
@@ -2188,10 +2182,8 @@ public final class MapResources {
                     {-2.86705f,-78.991f},
                     {-2.86724f,-78.991002f}
                 }
-            );
-        }});
-        routes.put(8, new ArrayList<Route>() {{
-            new Route (
+            ));
+        routes.put(8, new Route (
                 new float[][] {
                     {-2.8678776000000004f,-78.9909267f},
                     {-2.8677168f,-78.9903849f},
@@ -2415,10 +2407,8 @@ public final class MapResources {
                     {-2.8834804f,-78.9894073f},
                     {-2.8829888f,-78.9884886f}
                 }
-            );
-        }});
-        routes.put(15, new ArrayList<Route>() {{
-            new Route (
+            ));
+        routes.put(15, new Route (
                 new float[][] {
                     {-2.8991848f,-78.9744043f},
                     {-2.8995331f,-78.9748871f},
@@ -2666,10 +2656,8 @@ public final class MapResources {
             {-2.8986437f,-78.9734548f},
             {-2.8979472000000004f,-78.9721727f}
                 }
-            );
-        }});
-        routes.put(20, new ArrayList<Route>() {{
-            new Route (
+            ));
+        routes.put(20, new Route (
                 new float[][] {
                     {-2.8840443f,-78.9760995f},
                     {-2.8846819000000004f,-78.9754504f},
@@ -2868,663 +2856,668 @@ public final class MapResources {
                     {-2.8846752f,-78.9754477f},
                     {-2.884047f,-78.9760914f}
                 }
-            );
-        }});
-        routes.put(50, new ArrayList<Route>() {{
-            new Route (
-                new float[][] {
-                    {-2.8981455f,-78.9725482f},
-                    {-2.8987027f,-78.9736104f},
-                    {-2.8994527f,-78.9747584f},
-                    {-2.8995599f,-78.9749622f},
-                    {-2.8994206f,-78.9750266f},
-                    {-2.8993884f,-78.9751339f},
-                    {-2.8992706f,-78.9752305f},
-                    {-2.8987027f,-78.9755952f},
-                    {-2.898049f,-78.9758313f},
-                    {-2.8967739f,-78.9760995f},
-                    {-2.8967632f,-78.976357f},
-                    {-2.8969882f,-78.9770436f},
-                    {-2.8972668f,-78.9788568f},
-                    {-2.8975669f,-78.979876f},
-                    {-2.8981348f,-78.9816999f},
-                    {-2.8991313f,-78.98435f},
-                    {-2.8991313f,-78.9844894f},
-                    {-2.8991956f,-78.9846396f},
-                    {-2.8993027f,-78.9846504f},
-                    {-2.8994956f,-78.9845538f},
-                    {-2.9026137f,-78.9844465f},
-                    {-2.9036745f,-78.9843607f},
-                    {-2.905046f,-78.9839959f},
-                    {-2.9062997f,-78.983674f},
-                    {-2.9071783f,-78.984468f},
-                    {-2.9069426f,-78.9846182f},
-                    {-2.9039959f,-78.987236f},
-                    {-2.9021529f,-78.988899f},
-                    {-2.90181f,-78.9893496f},
-                    {-2.9016065f,-78.989886f},
-                    {-2.9012207f,-78.9898002f},
-                    {-2.9002349f,-78.9894783f},
-                    {-2.8999885f,-78.99068f},
-                    {-2.8995063f,-78.9926326f},
-                    {-2.8972776f,-78.9923322f},
-                    {-2.8967847f,-78.9965165f},
-                    {-2.8957453f,-79.0005827f},
-                    {-2.8943095f,-79.0063012f},
-                    {-2.8922629f,-79.0143478f},
-                    {-2.8932915f,-79.0145946f},
-                    {-2.8927236f,-79.0158927f},
-                    {-2.8921129f,-79.017781f},
-                    {-2.8919628f,-79.0187573f},
-                    {-2.8937308f,-79.0189505f},
-                    {-2.8944166f,-79.0189719f},
-                    {-2.8951452f,-79.0191329f},
-                    {-2.8974169f,-79.0197015f},
-                    {-2.8976419f,-79.0197873f},
-                    {-2.8977276f,-79.0199482f},
-                    {-2.8978669f,-79.0201843f},
-                    {-2.8978026f,-79.0206456f},
-                    {-2.8974061f,-79.0231454f},
-                    {-2.8972883f,-79.0241432f},
-                    {-2.897149f,-79.0247226f},
-                    {-2.8968597f,-79.0249801f},
-                    {-2.8964953f,-79.0250337f},
-                    {-2.8962275f,-79.025023f},
-                    {-2.8954774f,-79.0248299f},
-                    {-2.8934522f,-79.0247655f},
-                    {-2.8925843f,-79.0245938f},
-                    {-2.8916735f,-79.0243149f},
-                    {-2.8913521f,-79.0241218f},
-                    {-2.8911485f,-79.023993f},
-                    {-2.8909663f,-79.0240145f},
-                    {-2.8908806f,-79.0241647f},
-                    {-2.8909985f,-79.0243685f},
-                    {-2.8910521f,-79.0246153f},
-                    {-2.8909235f,-79.0254092f},
-                    {-2.8903448f,-79.0287781f},
-                    {-2.8884911f,-79.0356874f},
-                    {-2.8876446f,-79.0385199f},
-                    {-2.8872482f,-79.0401828f},
-                    {-2.8870339f,-79.0414488f},
-                    {-2.886991f,-79.0416527f}
-                }, new float[][] {
-                    {-2.889498f,-79.032498f},
-                    {-2.889565f,-79.032267f},
-                    {-2.889652f,-79.032093f},
-                    {-2.889683f,-79.031931f},
-                    {-2.889668f,-79.031814f},
-                    {-2.889709f,-79.031634f},
-                    {-2.889763f,-79.03142300000002f},
-                    {-2.889806f,-79.031216f},
-                    {-2.889892f,-79.031029f},
-                    {-2.889928f,-79.030813f},
-                    {-2.889981f,-79.030595f},
-                    {-2.890039f,-79.030377f},
-                    {-2.8900840000000003f,-79.030167f},
-                    {-2.890144f,-79.029956f},
-                    {-2.890183f,-79.029732f},
-                    {-2.89025f,-79.029529f},
-                    {-2.890296f,-79.029331f},
-                    {-2.890345f,-79.029134f},
-                    {-2.890385f,-79.028945f},
-                    {-2.890412f,-79.028754f},
-                    {-2.89046f,-79.028592f},
-                    {-2.890511f,-79.028435f},
-                    {-2.890562f,-79.028204f},
-                    {-2.89058f,-79.028014f},
-                    {-2.890583f,-79.027796f},
-                    {-2.890588f,-79.027591f},
-                    {-2.890609f,-79.02739400000002f},
-                    {-2.890638f,-79.02719f},
-                    {-2.890668f,-79.026982f},
-                    {-2.890701f,-79.02678600000002f},
-                    {-2.89074f,-79.026564f},
-                    {-2.890771f,-79.026368f},
-                    {-2.8908040000000006f,-79.026156f},
-                    {-2.890846f,-79.025952f},
-                    {-2.890884f,-79.025737f},
-                    {-2.890925f,-79.025527f},
-                    {-2.89095f,-79.025335f},
-                    {-2.89099f,-79.025178f},
-                    {-2.891013f,-79.025047f},
-                    {-2.891034f,-79.024954f},
-                    {-2.891052f,-79.024854f},
-                    {-2.891058f,-79.024744f},
-                    {-2.891079f,-79.024635f},
-                    {-2.891124f,-79.024547f},
-                    {-2.891222f,-79.024488f},
-                    {-2.891313f,-79.024465f},
-                    {-2.891427f,-79.024462f},
-                    {-2.891523f,-79.024485f},
-                    {-2.891637f,-79.024531f},
-                    {-2.8917520000000003f,-79.024588f},
-                    {-2.891884f,-79.024648f},
-                    {-2.892024f,-79.024717f},
-                    {-2.892176f,-79.02478f},
-                    {-2.89231f,-79.024842f},
-                    {-2.89247f,-79.024896f},
-                    {-2.892643f,-79.024933f},
-                    {-2.8928240000000005f,-79.024972f},
-                    {-2.893015f,-79.024992f},
-                    {-2.893213f,-79.025021f},
-                    {-2.893417f,-79.025045f},
-                    {-2.8936420000000003f,-79.025055f},
-                    {-2.893846f,-79.025049f},
-                    {-2.894047f,-79.025028f},
-                    {-2.894244f,-79.025028f},
-                    {-2.894404f,-79.025037f},
-                    {-2.894497f,-79.02502f},
-                    {-2.894608f,-79.02502f},
-                    {-2.894735f,-79.025031f},
-                    {-2.894853f,-79.025032f},
-                    {-2.894965f,-79.025043f},
-                    {-2.895071f,-79.025062f},
-                    {-2.895194f,-79.025058f},
-                    {-2.895295f,-79.025069f},
-                    {-2.8953910000000005f,-79.025081f},
-                    {-2.8955590000000004f,-79.02509700000002f},
-                    {-2.8956700000000004f,-79.025117f},
-                    {-2.895812f,-79.025145f},
-                    {-2.89597f,-79.025184f},
-                    {-2.896132f,-79.025227f},
-                    {-2.896278f,-79.025286f},
-                    {-2.896433f,-79.02535f},
-                    {-2.896566f,-79.02540400000001f},
-                    {-2.896673f,-79.025433f},
-                    {-2.896782f,-79.02547f},
-                    {-2.896889f,-79.025524f},
-                    {-2.8969860000000005f,-79.025566f},
-                    {-2.897106f,-79.025594f},
-                    {-2.897245f,-79.025585f},
-                    {-2.897355f,-79.025507f},
-                    {-2.897429f,-79.025386f},
-                    {-2.897458f,-79.025242f},
-                    {-2.897448f,-79.025098f},
-                    {-2.89742f,-79.024934f},
-                    {-2.897382f,-79.024797f},
-                    {-2.897395f,-79.024651f},
-                    {-2.897405f,-79.024547f},
-                    {-2.897345f,-79.024475f},
-                    {-2.897389f,-79.024322f},
-                    {-2.897412f,-79.024219f},
-                    {-2.8974190000000006f,-79.024125f},
-                    {-2.897441f,-79.024034f},
-                    {-2.89747f,-79.023936f},
-                    {-2.897496f,-79.023807f},
-                    {-2.897507f,-79.02368f},
-                    {-2.897519f,-79.023564f},
-                    {-2.897534f,-79.023447f},
-                    {-2.897538f,-79.023329f},
-                    {-2.897556f,-79.023213f},
-                    {-2.897575f,-79.023108f},
-                    {-2.897592f,-79.023007f},
-                    {-2.897588f,-79.022886f},
-                    {-2.8976f,-79.022771f},
-                    {-2.89761f,-79.022615f},
-                    {-2.89764f,-79.02245000000002f},
-                    {-2.897664f,-79.022271f},
-                    {-2.89767f,-79.022068f},
-                    {-2.8977f,-79.021874f},
-                    {-2.89773f,-79.021663f},
-                    {-2.897757f,-79.02146f},
-                    {-2.897793f,-79.021266f},
-                    {-2.897833f,-79.021041f},
-                    {-2.89786f,-79.020837f},
-                    {-2.897895f,-79.020586f},
-                    {-2.897929f,-79.020424f},
-                    {-2.897918f,-79.020267f},
-                    {-2.897944f,-79.020111f},
-                    {-2.898014f,-79.019999f},
-                    {-2.898049f,-79.01989f},
-                    {-2.898077f,-79.019801f},
-                    {-2.898081f,-79.019678f},
-                    {-2.898024f,-79.019565f},
-                    {-2.897908f,-79.019531f},
-                    {-2.897759f,-79.019567f},
-                    {-2.897603f,-79.019585f},
-                    {-2.897454f,-79.019556f},
-                    {-2.897296f,-79.019531f},
-                    {-2.897112f,-79.019509f},
-                    {-2.896928f,-79.019472f},
-                    {-2.89676f,-79.01944f},
-                    {-2.8965880000000004f,-79.01939f},
-                    {-2.896407f,-79.019337f},
-                    {-2.896238f,-79.01929500000001f},
-                    {-2.896064f,-79.019259f},
-                    {-2.895888f,-79.019215f},
-                    {-2.895715f,-79.019179f},
-                    {-2.895547f,-79.019147f},
-                    {-2.895362f,-79.019093f},
-                    {-2.895205f,-79.019056f},
-                    {-2.89503f,-79.019014f},
-                    {-2.894866f,-79.018972f},
-                    {-2.894698f,-79.018925f},
-                    {-2.894532f,-79.018889f},
-                    {-2.894364f,-79.018878f},
-                    {-2.894182f,-79.018867f},
-                    {-2.894005f,-79.018864f},
-                    {-2.893829f,-79.018859f},
-                    {-2.893652f,-79.018849f},
-                    {-2.893471f,-79.01884f},
-                    {-2.893299f,-79.018826f},
-                    {-2.893155f,-79.018811f},
-                    {-2.893036f,-79.018801f},
-                    {-2.892943f,-79.018796f},
-                    {-2.892827f,-79.018791f},
-                    {-2.892735f,-79.018712f},
-                    {-2.89275f,-79.018587f},
-                    {-2.892798f,-79.018471f},
-                    {-2.892922f,-79.01833f},
-                    {-2.892988f,-79.018207f},
-                    {-2.893089f,-79.018076f},
-                    {-2.893213f,-79.017967f},
-                    {-2.893353f,-79.017884f},
-                    {-2.89348f,-79.017779f},
-                    {-2.893621f,-79.017699f},
-                    {-2.893754f,-79.01761f},
-                    {-2.893873f,-79.017512f},
-                    {-2.893982f,-79.017388f},
-                    {-2.894053f,-79.017254f},
-                    {-2.8941210000000006f,-79.01712900000001f},
-                    {-2.894179f,-79.016965f},
-                    {-2.894259f,-79.016821f},
-                    {-2.8943430000000006f,-79.016662f},
-                    {-2.894443f,-79.01651900000002f},
-                    {-2.894543f,-79.016391f},
-                    {-2.894664f,-79.016274f},
-                    {-2.894793f,-79.016157f},
-                    {-2.8949f,-79.016045f},
-                    {-2.895014f,-79.015927f},
-                    {-2.895103f,-79.015833f},
-                    {-2.895514f,-79.01501f},
-                    {-2.895357f,-79.014978f},
-                    {-2.895256f,-79.014933f},
-                    {-2.895153f,-79.014868f},
-                    {-2.895046f,-79.014773f},
-                    {-2.895016f,-79.014636f},
-                    {-2.895079f,-79.014499f},
-                    {-2.895189f,-79.014394f},
-                    {-2.89529f,-79.014292f},
-                    {-2.895381f,-79.014168f},
-                    {-2.895472f,-79.014051f},
-                    {-2.895505f,-79.013896f},
-                    {-2.895504f,-79.013728f},
-                    {-2.895506f,-79.013576f},
-                    {-2.895492f,-79.013424f},
-                    {-2.895455f,-79.013273f},
-                    {-2.89542f,-79.013133f},
-                    {-2.895373f,-79.013001f},
-                    {-2.895367f,-79.012877f},
-                    {-2.895423f,-79.012737f},
-                    {-2.895517f,-79.012621f},
-                    {-2.895607f,-79.01249000000001f},
-                    {-2.895698f,-79.012356f},
-                    {-2.895787f,-79.012229f},
-                    {-2.895878f,-79.012129f},
-                    {-2.8959300000000003f,-79.012032f},
-                    {-2.895918f,-79.011937f},
-                    {-2.895829f,-79.011915f},
-                    {-2.895734f,-79.011907f},
-                    {-2.895622f,-79.011882f},
-                    {-2.8955130000000002f,-79.01184f},
-                    {-2.895396f,-79.011814f},
-                    {-2.895278f,-79.011785f},
-                    {-2.895183f,-79.011765f},
-                    {-2.895093f,-79.011738f},
-                    {-2.894995f,-79.011717f},
-                    {-2.894885f,-79.011707f},
-                    {-2.894791f,-79.011686f},
-                    {-2.894683f,-79.011654f},
-                    {-2.894586f,-79.011642f},
-                    {-2.89449f,-79.011632f},
-                    {-2.894394f,-79.011612f},
-                    {-2.894293f,-79.011602f},
-                    {-2.894181f,-79.011565f},
-                    {-2.894091f,-79.011541f},
-                    {-2.893997f,-79.011505f},
-                    {-2.893901f,-79.011507f},
-                    {-2.893807f,-79.011496f},
-                    {-2.893672f,-79.011489f},
-                    {-2.893556f,-79.011472f},
-                    {-2.893421f,-79.011458f},
-                    {-2.893311f,-79.011434f},
-                    {-2.89321f,-79.011396f},
-                    {-2.893097f,-79.011415f},
-                    {-2.8929920000000005f,-79.011372f},
-                    {-2.892893f,-79.011363f},
-                    {-2.892799f,-79.011354f},
-                    {-2.892658f,-79.011311f},
-                    {-2.892531f,-79.011271f},
-                    {-2.892401f,-79.011252f},
-                    {-2.892286f,-79.011239f},
-                    {-2.892196f,-79.01122f},
-                    {-2.89211f,-79.011171f},
-                    {-2.8921f,-79.011081f},
-                    {-2.89213f,-79.010969f},
-                    {-2.892137f,-79.010876f},
-                    {-2.892166f,-79.010786f},
-                    {-2.892195f,-79.010664f},
-                    {-2.892265f,-79.010416f},
-                    {-2.892286f,-79.010306f},
-                    {-2.892331f,-79.010195f},
-                    {-2.892349f,-79.010081f},
-                    {-2.892374f,-79.009968f},
-                    {-2.892414f,-79.009881f},
-                    {-2.892456f,-79.009761f},
-                    {-2.89248f,-79.00963000000002f},
-                    {-2.892485f,-79.009556f},
-                    {-2.892514f,-79.009448f},
-                    {-2.892841f,-79.008471f},
-                    {-2.892869f,-79.008343f},
-                    {-2.892771f,-79.008243f},
-                    {-2.892788f,-79.00815400000002f},
-                    {-2.892833f,-79.007984f},
-                    {-2.892858f,-79.007865f},
-                    {-2.892886f,-79.007753f},
-                    {-2.892918f,-79.007649f},
-                    {-2.892956f,-79.007523f},
-                    {-2.892977f,-79.00743f},
-                    {-2.892991f,-79.007349f},
-                    {-2.893027f,-79.007234f},
-                    {-2.893062f,-79.007111f},
-                    {-2.893119f,-79.006916f},
-                    {-2.893167f,-79.006795f},
-                    {-2.893194f,-79.006679f},
-                    {-2.893206f,-79.006544f},
-                    {-2.8932600000000006f,-79.0064f},
-                    {-2.893296f,-79.006248f},
-                    {-2.893342f,-79.006128f},
-                    {-2.8933710000000006f,-79.00599f},
-                    {-2.893402f,-79.005861f},
-                    {-2.893434f,-79.005741f},
-                    {-2.89341f,-79.005593f},
-                    {-2.89347f,-79.00547000000002f},
-                    {-2.893503f,-79.005365f},
-                    {-2.893552f,-79.005218f},
-                    {-2.893602f,-79.005137f},
-                    {-2.893636f,-79.004996f},
-                    {-2.893696f,-79.004873f},
-                    {-2.893724f,-79.004771f},
-                    {-2.893776f,-79.004665f},
-                    {-2.893795f,-79.00454f},
-                    {-2.893828f,-79.004426f},
-                    {-2.893854f,-79.004295f},
-                    {-2.8938720000000004f,-79.00418f},
-                    {-2.893876f,-79.004077f},
-                    {-2.893928f,-79.003909f},
-                    {-2.893939f,-79.003795f},
-                    {-2.893974f,-79.003669f},
-                    {-2.89395f,-79.003583f},
-                    {-2.894008f,-79.003475f},
-                    {-2.894064f,-79.003364f},
-                    {-2.894094f,-79.003246f},
-                    {-2.894074f,-79.003147f},
-                    {-2.894096f,-79.003048f},
-                    {-2.894122f,-79.002955f},
-                    {-2.894154f,-79.002828f},
-                    {-2.894194f,-79.002719f},
-                    {-2.894228f,-79.002615f},
-                    {-2.894252f,-79.002494f},
-                    {-2.894273f,-79.002389f},
-                    {-2.89431f,-79.002293f},
-                    {-2.894338f,-79.002173f},
-                    {-2.894403f,-79.002014f},
-                    {-2.894401f,-79.001891f},
-                    {-2.894417f,-79.001755f},
-                    {-2.894439f,-79.001633f},
-                    {-2.894474f,-79.001536f},
-                    {-2.894519f,-79.00139f},
-                    {-2.89455f,-79.001289f},
-                    {-2.894561f,-79.001163f},
-                    {-2.894599f,-79.000994f},
-                    {-2.8946330000000002f,-79.000842f},
-                    {-2.894681f,-79.000657f},
-                    {-2.89473f,-79.000537f},
-                    {-2.894776f,-79.000401f},
-                    {-2.894782f,-79.000319f},
-                    {-2.894799f,-79.0002f},
-                    {-2.894797f,-79.000083f},
-                    {-2.894808f,-78.999959f},
-                    {-2.894846f,-78.999843f},
-                    {-2.894876f,-78.999748f},
-                    {-2.894903f,-78.999658f},
-                    {-2.894943f,-78.999564f},
-                    {-2.894953f,-78.999483f},
-                    {-2.894974f,-78.999314f},
-                    {-2.894999f,-78.999186f},
-                    {-2.895017f,-78.999029f},
-                    {-2.8950500000000003f,-78.998871f},
-                    {-2.895084f,-78.99871800000001f},
-                    {-2.895118f,-78.998551f},
-                    {-2.895165f,-78.998392f},
-                    {-2.895204f,-78.998214f},
-                    {-2.895229f,-78.998077f},
-                    {-2.8952420000000005f,-78.997986f},
-                    {-2.895231f,-78.997896f},
-                    {-2.895251f,-78.997779f},
-                    {-2.895259f,-78.997639f},
-                    {-2.89529f,-78.997506f},
-                    {-2.895313f,-78.997351f},
-                    {-2.895345f,-78.997172f},
-                    {-2.895387f,-78.996974f},
-                    {-2.89542f,-78.99668f},
-                    {-2.895466f,-78.996441f},
-                    {-2.895526f,-78.995885f},
-                    {-2.8956510000000004f,-78.995638f},
-                    {-2.895801f,-78.995354f},
-                    {-2.895921f,-78.995113f},
-                    {-2.89601f,-78.994868f},
-                    {-2.896095f,-78.994665f},
-                    {-2.896189f,-78.994442f},
-                    {-2.896297f,-78.994224f},
-                    {-2.896386f,-78.994022f},
-                    {-2.896454f,-78.993865f},
-                    {-2.896518f,-78.993747f},
-                    {-2.896614f,-78.993646f},
-                    {-2.89673f,-78.993676f},
-                    {-2.896839f,-78.993701f},
-                    {-2.896957f,-78.993725f},
-                    {-2.897062f,-78.99373f},
-                    {-2.897121f,-78.993739f},
-                    {-2.897311f,-78.993767f},
-                    {-2.897444f,-78.993793f},
-                    {-2.8975870000000006f,-78.99383f},
-                    {-2.897755f,-78.993864f},
-                    {-2.897909f,-78.993895f},
-                    {-2.898028f,-78.993915f},
-                    {-2.89816f,-78.993935f},
-                    {-2.898252f,-78.993954f},
-                    {-2.8983560000000006f,-78.993967f},
-                    {-2.8984780000000003f,-78.993956f},
-                    {-2.898619f,-78.993963f},
-                    {-2.898773f,-78.993963f},
-                    {-2.898923f,-78.993985f},
-                    {-2.899047f,-78.993987f},
-                    {-2.899158f,-78.99403f},
-                    {-2.899245f,-78.994045f},
-                    {-2.89933f,-78.994052f},
-                    {-2.899454f,-78.994062f},
-                    {-2.899584f,-78.994069f},
-                    {-2.899716f,-78.994068f},
-                    {-2.899864f,-78.994064f},
-                    {-2.900006f,-78.99406f},
-                    {-2.900132f,-78.994061f},
-                    {-2.900263f,-78.994052f},
-                    {-2.900333f,-78.994051f},
-                    {-2.900452f,-78.994053f},
-                    {-2.900524f,-78.994005f},
-                    {-2.900567f,-78.993892f},
-                    {-2.900608f,-78.993752f},
-                    {-2.900651f,-78.993597f},
-                    {-2.900705f,-78.99343f},
-                    {-2.900741f,-78.993248f},
-                    {-2.900776f,-78.99307f},
-                    {-2.900821f,-78.99289f},
-                    {-2.900864f,-78.992736f},
-                    {-2.9009f,-78.9926f},
-                    {-2.9009150000000004f,-78.992471f},
-                    {-2.900933f,-78.992367f},
-                    {-2.900965f,-78.99226100000001f},
-                    {-2.900979f,-78.992164f},
-                    {-2.9010340000000006f,-78.99204000000002f},
-                    {-2.901068f,-78.991927f},
-                    {-2.901106f,-78.991796f},
-                    {-2.90116f,-78.991627f},
-                    {-2.901217f,-78.99144000000001f},
-                    {-2.901271f,-78.991237f},
-                    {-2.90133f,-78.991041f},
-                    {-2.901399f,-78.990818f},
-                    {-2.901463f,-78.990589f},
-                    {-2.901521f,-78.990378f},
-                    {-2.901582f,-78.990174f},
-                    {-2.901637f,-78.989996f},
-                    {-2.901686f,-78.989848f},
-                    {-2.901725f,-78.989731f},
-                    {-2.901762f,-78.989625f},
-                    {-2.901812f,-78.989492f},
-                    {-2.901855f,-78.989364f},
-                    {-2.901951f,-78.989249f},
-                    {-2.902037f,-78.989112f},
-                    {-2.902116f,-78.98900600000002f},
-                    {-2.902186f,-78.988918f},
-                    {-2.902283f,-78.988832f},
-                    {-2.902387f,-78.988754f},
-                    {-2.902491f,-78.988671f},
-                    {-2.902588f,-78.988584f},
-                    {-2.90271f,-78.988492f},
-                    {-2.9028240000000003f,-78.988382f},
-                    {-2.902938f,-78.988286f},
-                    {-2.903038f,-78.988206f},
-                    {-2.90313f,-78.988122f},
-                    {-2.903215f,-78.988061f},
-                    {-2.903291f,-78.98799f},
-                    {-2.903374f,-78.987916f},
-                    {-2.903453f,-78.987838f},
-                    {-2.903552f,-78.987754f},
-                    {-2.903664f,-78.987649f},
-                    {-2.903799f,-78.987519f},
-                    {-2.903952f,-78.987376f},
-                    {-2.904122f,-78.987236f},
-                    {-2.904279f,-78.987094f},
-                    {-2.904417f,-78.986994f},
-                    {-2.904483f,-78.986929f},
-                    {-2.9045650000000003f,-78.986829f},
-                    {-2.904645f,-78.986763f},
-                    {-2.904736f,-78.986671f},
-                    {-2.904838f,-78.986604f},
-                    {-2.904983f,-78.986497f},
-                    {-2.9051120000000004f,-78.986375f},
-                    {-2.905252f,-78.986265f},
-                    {-2.905363f,-78.986171f},
-                    {-2.905415f,-78.986096f},
-                    {-2.9054910000000005f,-78.986026f},
-                    {-2.905566f,-78.985953f},
-                    {-2.905662f,-78.985866f},
-                    {-2.905777f,-78.985764f},
-                    {-2.905905f,-78.985658f},
-                    {-2.906044f,-78.98554f},
-                    {-2.906213f,-78.985383f},
-                    {-2.906393f,-78.985229f},
-                    {-2.906576f,-78.98507f},
-                    {-2.906741f,-78.984919f},
-                    {-2.906913f,-78.984798f},
-                    {-2.907015f,-78.98471f},
-                    {-2.907104f,-78.984643f},
-                    {-2.907166f,-78.984571f},
-                    {-2.90718f,-78.984461f},
-                    {-2.907087f,-78.984357f},
-                    {-2.906982f,-78.984269f},
-                    {-2.906874f,-78.984186f},
-                    {-2.90674f,-78.984085f},
-                    {-2.906605f,-78.983989f},
-                    {-2.906494f,-78.983905f},
-                    {-2.906416f,-78.983841f},
-                    {-2.906359f,-78.98376700000001f},
-                    {-2.906265f,-78.983714f},
-                    {-2.906136f,-78.983663f},
-                    {-2.906024f,-78.983671f},
-                    {-2.905885f,-78.98371f},
-                    {-2.905695f,-78.983772f},
-                    {-2.9055f,-78.983833f},
-                    {-2.905299f,-78.983885f},
-                    {-2.905098f,-78.983919f},
-                    {-2.904893f,-78.983969f},
-                    {-2.904745f,-78.983977f},
-                    {-2.904631f,-78.98399f},
-                    {-2.90452f,-78.984011f},
-                    {-2.904393f,-78.984046f},
-                    {-2.904277f,-78.984078f},
-                    {-2.904149f,-78.984109f},
-                    {-2.904005f,-78.98415400000002f},
-                    {-2.903845f,-78.98423f},
-                    {-2.903675f,-78.98427f},
-                    {-2.903467f,-78.984305f},
-                    {-2.903267f,-78.984323f},
-                    {-2.9030650000000002f,-78.984338f},
-                    {-2.902861f,-78.984346f},
-                    {-2.9026450000000006f,-78.984354f},
-                    {-2.902426f,-78.984359f},
-                    {-2.9022120000000005f,-78.984379f},
-                    {-2.902045f,-78.984394f},
-                    {-2.90189f,-78.984394f},
-                    {-2.901761f,-78.984423f},
-                    {-2.901663f,-78.984441f},
-                    {-2.901538f,-78.984439f},
-                    {-2.9014240000000004f,-78.984429f},
-                    {-2.901322f,-78.984415f},
-                    {-2.901178f,-78.98442f},
-                    {-2.901082f,-78.984427f},
-                    {-2.900985f,-78.984462f},
-                    {-2.900869f,-78.984491f},
-                    {-2.900742f,-78.98450400000002f},
-                    {-2.900596f,-78.984517f},
-                    {-2.900422f,-78.984527f},
-                    {-2.900242f,-78.984544f},
-                    {-2.900061f,-78.984538f},
-                    {-2.8998860000000004f,-78.984553f},
-                    {-2.89972f,-78.984542f},
-                    {-2.899591f,-78.984479f},
-                    {-2.899454f,-78.98444f},
-                    {-2.899326f,-78.984336f},
-                    {-2.8992170000000006f,-78.984211f},
-                    {-2.8991440000000006f,-78.984068f},
-                    {-2.8991f,-78.983924f},
-                    {-2.899052f,-78.983825f},
-                    {-2.899041f,-78.983734f},
-                    {-2.898994f,-78.983653f},
-                    {-2.898911f,-78.983559f},
-                    {-2.898866f,-78.983438f},
-                    {-2.898836f,-78.983279f},
-                    {-2.898774f,-78.98307700000001f},
-                    {-2.898722f,-78.982877f},
-                    {-2.898648f,-78.982666f},
-                    {-2.898558f,-78.982448f},
-                    {-2.898484f,-78.982266f},
-                    {-2.898421f,-78.982099f},
-                    {-2.898393f,-78.982015f},
-                    {-2.8980973f,-78.9812413f},
-                    {-2.8977731f,-78.9804366f},
-                    {-2.8975561f,-78.9795971f},
-                    {-2.8971865f,-78.9777035f},
-                    {-2.8970847f,-78.97705440000001f},
-                    {-2.8969025f,-78.9760968f},
-                    {-2.8981562f,-78.97585f},
-                    {-2.8994742f,-78.97515f},
-                    {-2.8995867f,-78.9751929f},
-                    {-2.8997018f,-78.9751393f},
-                    {-2.8996911f,-78.9749998f},
-                    {-2.8995706f,-78.9749542f},
-                    {-2.899225f,-78.9743507f},
-                    {-2.8986759f,-78.9734897f}
-                }
-            );
-        }});
+            ));
+        routes.put(50, new Route(
+            new float[][]{
+                {-2.8981455f, -78.9725482f},
+                {-2.8987027f, -78.9736104f},
+                {-2.8994527f, -78.9747584f},
+                {-2.8995599f, -78.9749622f},
+                {-2.8994206f, -78.9750266f},
+                {-2.8993884f, -78.9751339f},
+                {-2.8992706f, -78.9752305f},
+                {-2.8987027f, -78.9755952f},
+                {-2.898049f, -78.9758313f},
+                {-2.8967739f, -78.9760995f},
+                {-2.8967632f, -78.976357f},
+                {-2.8969882f, -78.9770436f},
+                {-2.8972668f, -78.9788568f},
+                {-2.8975669f, -78.979876f},
+                {-2.8981348f, -78.9816999f},
+                {-2.8991313f, -78.98435f},
+                {-2.8991313f, -78.9844894f},
+                {-2.8991956f, -78.9846396f},
+                {-2.8993027f, -78.9846504f},
+                {-2.8994956f, -78.9845538f},
+                {-2.9026137f, -78.9844465f},
+                {-2.9036745f, -78.9843607f},
+                {-2.905046f, -78.9839959f},
+                {-2.9062997f, -78.983674f},
+                {-2.9071783f, -78.984468f},
+                {-2.9069426f, -78.9846182f},
+                {-2.9039959f, -78.987236f},
+                {-2.9021529f, -78.988899f},
+                {-2.90181f, -78.9893496f},
+                {-2.9016065f, -78.989886f},
+                {-2.9012207f, -78.9898002f},
+                {-2.9002349f, -78.9894783f},
+                {-2.8999885f, -78.99068f},
+                {-2.8995063f, -78.9926326f},
+                {-2.8972776f, -78.9923322f},
+                {-2.8967847f, -78.9965165f},
+                {-2.8957453f, -79.0005827f},
+                {-2.8943095f, -79.0063012f},
+                {-2.8922629f, -79.0143478f},
+                {-2.8932915f, -79.0145946f},
+                {-2.8927236f, -79.0158927f},
+                {-2.8921129f, -79.017781f},
+                {-2.8919628f, -79.0187573f},
+                {-2.8937308f, -79.0189505f},
+                {-2.8944166f, -79.0189719f},
+                {-2.8951452f, -79.0191329f},
+                {-2.8974169f, -79.0197015f},
+                {-2.8976419f, -79.0197873f},
+                {-2.8977276f, -79.0199482f},
+                {-2.8978669f, -79.0201843f},
+                {-2.8978026f, -79.0206456f},
+                {-2.8974061f, -79.0231454f},
+                {-2.8972883f, -79.0241432f},
+                {-2.897149f, -79.0247226f},
+                {-2.8968597f, -79.0249801f},
+                {-2.8964953f, -79.0250337f},
+                {-2.8962275f, -79.025023f},
+                {-2.8954774f, -79.0248299f},
+                {-2.8934522f, -79.0247655f},
+                {-2.8925843f, -79.0245938f},
+                {-2.8916735f, -79.0243149f},
+                {-2.8913521f, -79.0241218f},
+                {-2.8911485f, -79.023993f},
+                {-2.8909663f, -79.0240145f},
+                {-2.8908806f, -79.0241647f},
+                {-2.8909985f, -79.0243685f},
+                {-2.8910521f, -79.0246153f},
+                {-2.8909235f, -79.0254092f},
+                {-2.8903448f, -79.0287781f},
+                {-2.8884911f, -79.0356874f},
+                {-2.8876446f, -79.0385199f},
+                {-2.8872482f, -79.0401828f},
+                {-2.8870339f, -79.0414488f},
+                {-2.886991f, -79.0416527f}
+            }, new float[][]{
+            {-2.889498f, -79.032498f},
+            {-2.889565f, -79.032267f},
+            {-2.889652f, -79.032093f},
+            {-2.889683f, -79.031931f},
+            {-2.889668f, -79.031814f},
+            {-2.889709f, -79.031634f},
+            {-2.889763f, -79.03142300000002f},
+            {-2.889806f, -79.031216f},
+            {-2.889892f, -79.031029f},
+            {-2.889928f, -79.030813f},
+            {-2.889981f, -79.030595f},
+            {-2.890039f, -79.030377f},
+            {-2.8900840000000003f, -79.030167f},
+            {-2.890144f, -79.029956f},
+            {-2.890183f, -79.029732f},
+            {-2.89025f, -79.029529f},
+            {-2.890296f, -79.029331f},
+            {-2.890345f, -79.029134f},
+            {-2.890385f, -79.028945f},
+            {-2.890412f, -79.028754f},
+            {-2.89046f, -79.028592f},
+            {-2.890511f, -79.028435f},
+            {-2.890562f, -79.028204f},
+            {-2.89058f, -79.028014f},
+            {-2.890583f, -79.027796f},
+            {-2.890588f, -79.027591f},
+            {-2.890609f, -79.02739400000002f},
+            {-2.890638f, -79.02719f},
+            {-2.890668f, -79.026982f},
+            {-2.890701f, -79.02678600000002f},
+            {-2.89074f, -79.026564f},
+            {-2.890771f, -79.026368f},
+            {-2.8908040000000006f, -79.026156f},
+            {-2.890846f, -79.025952f},
+            {-2.890884f, -79.025737f},
+            {-2.890925f, -79.025527f},
+            {-2.89095f, -79.025335f},
+            {-2.89099f, -79.025178f},
+            {-2.891013f, -79.025047f},
+            {-2.891034f, -79.024954f},
+            {-2.891052f, -79.024854f},
+            {-2.891058f, -79.024744f},
+            {-2.891079f, -79.024635f},
+            {-2.891124f, -79.024547f},
+            {-2.891222f, -79.024488f},
+            {-2.891313f, -79.024465f},
+            {-2.891427f, -79.024462f},
+            {-2.891523f, -79.024485f},
+            {-2.891637f, -79.024531f},
+            {-2.8917520000000003f, -79.024588f},
+            {-2.891884f, -79.024648f},
+            {-2.892024f, -79.024717f},
+            {-2.892176f, -79.02478f},
+            {-2.89231f, -79.024842f},
+            {-2.89247f, -79.024896f},
+            {-2.892643f, -79.024933f},
+            {-2.8928240000000005f, -79.024972f},
+            {-2.893015f, -79.024992f},
+            {-2.893213f, -79.025021f},
+            {-2.893417f, -79.025045f},
+            {-2.8936420000000003f, -79.025055f},
+            {-2.893846f, -79.025049f},
+            {-2.894047f, -79.025028f},
+            {-2.894244f, -79.025028f},
+            {-2.894404f, -79.025037f},
+            {-2.894497f, -79.02502f},
+            {-2.894608f, -79.02502f},
+            {-2.894735f, -79.025031f},
+            {-2.894853f, -79.025032f},
+            {-2.894965f, -79.025043f},
+            {-2.895071f, -79.025062f},
+            {-2.895194f, -79.025058f},
+            {-2.895295f, -79.025069f},
+            {-2.8953910000000005f, -79.025081f},
+            {-2.8955590000000004f, -79.02509700000002f},
+            {-2.8956700000000004f, -79.025117f},
+            {-2.895812f, -79.025145f},
+            {-2.89597f, -79.025184f},
+            {-2.896132f, -79.025227f},
+            {-2.896278f, -79.025286f},
+            {-2.896433f, -79.02535f},
+            {-2.896566f, -79.02540400000001f},
+            {-2.896673f, -79.025433f},
+            {-2.896782f, -79.02547f},
+            {-2.896889f, -79.025524f},
+            {-2.8969860000000005f, -79.025566f},
+            {-2.897106f, -79.025594f},
+            {-2.897245f, -79.025585f},
+            {-2.897355f, -79.025507f},
+            {-2.897429f, -79.025386f},
+            {-2.897458f, -79.025242f},
+            {-2.897448f, -79.025098f},
+            {-2.89742f, -79.024934f},
+            {-2.897382f, -79.024797f},
+            {-2.897395f, -79.024651f},
+            {-2.897405f, -79.024547f},
+            {-2.897345f, -79.024475f},
+            {-2.897389f, -79.024322f},
+            {-2.897412f, -79.024219f},
+            {-2.8974190000000006f, -79.024125f},
+            {-2.897441f, -79.024034f},
+            {-2.89747f, -79.023936f},
+            {-2.897496f, -79.023807f},
+            {-2.897507f, -79.02368f},
+            {-2.897519f, -79.023564f},
+            {-2.897534f, -79.023447f},
+            {-2.897538f, -79.023329f},
+            {-2.897556f, -79.023213f},
+            {-2.897575f, -79.023108f},
+            {-2.897592f, -79.023007f},
+            {-2.897588f, -79.022886f},
+            {-2.8976f, -79.022771f},
+            {-2.89761f, -79.022615f},
+            {-2.89764f, -79.02245000000002f},
+            {-2.897664f, -79.022271f},
+            {-2.89767f, -79.022068f},
+            {-2.8977f, -79.021874f},
+            {-2.89773f, -79.021663f},
+            {-2.897757f, -79.02146f},
+            {-2.897793f, -79.021266f},
+            {-2.897833f, -79.021041f},
+            {-2.89786f, -79.020837f},
+            {-2.897895f, -79.020586f},
+            {-2.897929f, -79.020424f},
+            {-2.897918f, -79.020267f},
+            {-2.897944f, -79.020111f},
+            {-2.898014f, -79.019999f},
+            {-2.898049f, -79.01989f},
+            {-2.898077f, -79.019801f},
+            {-2.898081f, -79.019678f},
+            {-2.898024f, -79.019565f},
+            {-2.897908f, -79.019531f},
+            {-2.897759f, -79.019567f},
+            {-2.897603f, -79.019585f},
+            {-2.897454f, -79.019556f},
+            {-2.897296f, -79.019531f},
+            {-2.897112f, -79.019509f},
+            {-2.896928f, -79.019472f},
+            {-2.89676f, -79.01944f},
+            {-2.8965880000000004f, -79.01939f},
+            {-2.896407f, -79.019337f},
+            {-2.896238f, -79.01929500000001f},
+            {-2.896064f, -79.019259f},
+            {-2.895888f, -79.019215f},
+            {-2.895715f, -79.019179f},
+            {-2.895547f, -79.019147f},
+            {-2.895362f, -79.019093f},
+            {-2.895205f, -79.019056f},
+            {-2.89503f, -79.019014f},
+            {-2.894866f, -79.018972f},
+            {-2.894698f, -79.018925f},
+            {-2.894532f, -79.018889f},
+            {-2.894364f, -79.018878f},
+            {-2.894182f, -79.018867f},
+            {-2.894005f, -79.018864f},
+            {-2.893829f, -79.018859f},
+            {-2.893652f, -79.018849f},
+            {-2.893471f, -79.01884f},
+            {-2.893299f, -79.018826f},
+            {-2.893155f, -79.018811f},
+            {-2.893036f, -79.018801f},
+            {-2.892943f, -79.018796f},
+            {-2.892827f, -79.018791f},
+            {-2.892735f, -79.018712f},
+            {-2.89275f, -79.018587f},
+            {-2.892798f, -79.018471f},
+            {-2.892922f, -79.01833f},
+            {-2.892988f, -79.018207f},
+            {-2.893089f, -79.018076f},
+            {-2.893213f, -79.017967f},
+            {-2.893353f, -79.017884f},
+            {-2.89348f, -79.017779f},
+            {-2.893621f, -79.017699f},
+            {-2.893754f, -79.01761f},
+            {-2.893873f, -79.017512f},
+            {-2.893982f, -79.017388f},
+            {-2.894053f, -79.017254f},
+            {-2.8941210000000006f, -79.01712900000001f},
+            {-2.894179f, -79.016965f},
+            {-2.894259f, -79.016821f},
+            {-2.8943430000000006f, -79.016662f},
+            {-2.894443f, -79.01651900000002f},
+            {-2.894543f, -79.016391f},
+            {-2.894664f, -79.016274f},
+            {-2.894793f, -79.016157f},
+            {-2.8949f, -79.016045f},
+            {-2.895014f, -79.015927f},
+            {-2.895103f, -79.015833f},
+            {-2.895514f, -79.01501f},
+            {-2.895357f, -79.014978f},
+            {-2.895256f, -79.014933f},
+            {-2.895153f, -79.014868f},
+            {-2.895046f, -79.014773f},
+            {-2.895016f, -79.014636f},
+            {-2.895079f, -79.014499f},
+            {-2.895189f, -79.014394f},
+            {-2.89529f, -79.014292f},
+            {-2.895381f, -79.014168f},
+            {-2.895472f, -79.014051f},
+            {-2.895505f, -79.013896f},
+            {-2.895504f, -79.013728f},
+            {-2.895506f, -79.013576f},
+            {-2.895492f, -79.013424f},
+            {-2.895455f, -79.013273f},
+            {-2.89542f, -79.013133f},
+            {-2.895373f, -79.013001f},
+            {-2.895367f, -79.012877f},
+            {-2.895423f, -79.012737f},
+            {-2.895517f, -79.012621f},
+            {-2.895607f, -79.01249000000001f},
+            {-2.895698f, -79.012356f},
+            {-2.895787f, -79.012229f},
+            {-2.895878f, -79.012129f},
+            {-2.8959300000000003f, -79.012032f},
+            {-2.895918f, -79.011937f},
+            {-2.895829f, -79.011915f},
+            {-2.895734f, -79.011907f},
+            {-2.895622f, -79.011882f},
+            {-2.8955130000000002f, -79.01184f},
+            {-2.895396f, -79.011814f},
+            {-2.895278f, -79.011785f},
+            {-2.895183f, -79.011765f},
+            {-2.895093f, -79.011738f},
+            {-2.894995f, -79.011717f},
+            {-2.894885f, -79.011707f},
+            {-2.894791f, -79.011686f},
+            {-2.894683f, -79.011654f},
+            {-2.894586f, -79.011642f},
+            {-2.89449f, -79.011632f},
+            {-2.894394f, -79.011612f},
+            {-2.894293f, -79.011602f},
+            {-2.894181f, -79.011565f},
+            {-2.894091f, -79.011541f},
+            {-2.893997f, -79.011505f},
+            {-2.893901f, -79.011507f},
+            {-2.893807f, -79.011496f},
+            {-2.893672f, -79.011489f},
+            {-2.893556f, -79.011472f},
+            {-2.893421f, -79.011458f},
+            {-2.893311f, -79.011434f},
+            {-2.89321f, -79.011396f},
+            {-2.893097f, -79.011415f},
+            {-2.8929920000000005f, -79.011372f},
+            {-2.892893f, -79.011363f},
+            {-2.892799f, -79.011354f},
+            {-2.892658f, -79.011311f},
+            {-2.892531f, -79.011271f},
+            {-2.892401f, -79.011252f},
+            {-2.892286f, -79.011239f},
+            {-2.892196f, -79.01122f},
+            {-2.89211f, -79.011171f},
+            {-2.8921f, -79.011081f},
+            {-2.89213f, -79.010969f},
+            {-2.892137f, -79.010876f},
+            {-2.892166f, -79.010786f},
+            {-2.892195f, -79.010664f},
+            {-2.892265f, -79.010416f},
+            {-2.892286f, -79.010306f},
+            {-2.892331f, -79.010195f},
+            {-2.892349f, -79.010081f},
+            {-2.892374f, -79.009968f},
+            {-2.892414f, -79.009881f},
+            {-2.892456f, -79.009761f},
+            {-2.89248f, -79.00963000000002f},
+            {-2.892485f, -79.009556f},
+            {-2.892514f, -79.009448f},
+            {-2.892841f, -79.008471f},
+            {-2.892869f, -79.008343f},
+            {-2.892771f, -79.008243f},
+            {-2.892788f, -79.00815400000002f},
+            {-2.892833f, -79.007984f},
+            {-2.892858f, -79.007865f},
+            {-2.892886f, -79.007753f},
+            {-2.892918f, -79.007649f},
+            {-2.892956f, -79.007523f},
+            {-2.892977f, -79.00743f},
+            {-2.892991f, -79.007349f},
+            {-2.893027f, -79.007234f},
+            {-2.893062f, -79.007111f},
+            {-2.893119f, -79.006916f},
+            {-2.893167f, -79.006795f},
+            {-2.893194f, -79.006679f},
+            {-2.893206f, -79.006544f},
+            {-2.8932600000000006f, -79.0064f},
+            {-2.893296f, -79.006248f},
+            {-2.893342f, -79.006128f},
+            {-2.8933710000000006f, -79.00599f},
+            {-2.893402f, -79.005861f},
+            {-2.893434f, -79.005741f},
+            {-2.89341f, -79.005593f},
+            {-2.89347f, -79.00547000000002f},
+            {-2.893503f, -79.005365f},
+            {-2.893552f, -79.005218f},
+            {-2.893602f, -79.005137f},
+            {-2.893636f, -79.004996f},
+            {-2.893696f, -79.004873f},
+            {-2.893724f, -79.004771f},
+            {-2.893776f, -79.004665f},
+            {-2.893795f, -79.00454f},
+            {-2.893828f, -79.004426f},
+            {-2.893854f, -79.004295f},
+            {-2.8938720000000004f, -79.00418f},
+            {-2.893876f, -79.004077f},
+            {-2.893928f, -79.003909f},
+            {-2.893939f, -79.003795f},
+            {-2.893974f, -79.003669f},
+            {-2.89395f, -79.003583f},
+            {-2.894008f, -79.003475f},
+            {-2.894064f, -79.003364f},
+            {-2.894094f, -79.003246f},
+            {-2.894074f, -79.003147f},
+            {-2.894096f, -79.003048f},
+            {-2.894122f, -79.002955f},
+            {-2.894154f, -79.002828f},
+            {-2.894194f, -79.002719f},
+            {-2.894228f, -79.002615f},
+            {-2.894252f, -79.002494f},
+            {-2.894273f, -79.002389f},
+            {-2.89431f, -79.002293f},
+            {-2.894338f, -79.002173f},
+            {-2.894403f, -79.002014f},
+            {-2.894401f, -79.001891f},
+            {-2.894417f, -79.001755f},
+            {-2.894439f, -79.001633f},
+            {-2.894474f, -79.001536f},
+            {-2.894519f, -79.00139f},
+            {-2.89455f, -79.001289f},
+            {-2.894561f, -79.001163f},
+            {-2.894599f, -79.000994f},
+            {-2.8946330000000002f, -79.000842f},
+            {-2.894681f, -79.000657f},
+            {-2.89473f, -79.000537f},
+            {-2.894776f, -79.000401f},
+            {-2.894782f, -79.000319f},
+            {-2.894799f, -79.0002f},
+            {-2.894797f, -79.000083f},
+            {-2.894808f, -78.999959f},
+            {-2.894846f, -78.999843f},
+            {-2.894876f, -78.999748f},
+            {-2.894903f, -78.999658f},
+            {-2.894943f, -78.999564f},
+            {-2.894953f, -78.999483f},
+            {-2.894974f, -78.999314f},
+            {-2.894999f, -78.999186f},
+            {-2.895017f, -78.999029f},
+            {-2.8950500000000003f, -78.998871f},
+            {-2.895084f, -78.99871800000001f},
+            {-2.895118f, -78.998551f},
+            {-2.895165f, -78.998392f},
+            {-2.895204f, -78.998214f},
+            {-2.895229f, -78.998077f},
+            {-2.8952420000000005f, -78.997986f},
+            {-2.895231f, -78.997896f},
+            {-2.895251f, -78.997779f},
+            {-2.895259f, -78.997639f},
+            {-2.89529f, -78.997506f},
+            {-2.895313f, -78.997351f},
+            {-2.895345f, -78.997172f},
+            {-2.895387f, -78.996974f},
+            {-2.89542f, -78.99668f},
+            {-2.895466f, -78.996441f},
+            {-2.895526f, -78.995885f},
+            {-2.8956510000000004f, -78.995638f},
+            {-2.895801f, -78.995354f},
+            {-2.895921f, -78.995113f},
+            {-2.89601f, -78.994868f},
+            {-2.896095f, -78.994665f},
+            {-2.896189f, -78.994442f},
+            {-2.896297f, -78.994224f},
+            {-2.896386f, -78.994022f},
+            {-2.896454f, -78.993865f},
+            {-2.896518f, -78.993747f},
+            {-2.896614f, -78.993646f},
+            {-2.89673f, -78.993676f},
+            {-2.896839f, -78.993701f},
+            {-2.896957f, -78.993725f},
+            {-2.897062f, -78.99373f},
+            {-2.897121f, -78.993739f},
+            {-2.897311f, -78.993767f},
+            {-2.897444f, -78.993793f},
+            {-2.8975870000000006f, -78.99383f},
+            {-2.897755f, -78.993864f},
+            {-2.897909f, -78.993895f},
+            {-2.898028f, -78.993915f},
+            {-2.89816f, -78.993935f},
+            {-2.898252f, -78.993954f},
+            {-2.8983560000000006f, -78.993967f},
+            {-2.8984780000000003f, -78.993956f},
+            {-2.898619f, -78.993963f},
+            {-2.898773f, -78.993963f},
+            {-2.898923f, -78.993985f},
+            {-2.899047f, -78.993987f},
+            {-2.899158f, -78.99403f},
+            {-2.899245f, -78.994045f},
+            {-2.89933f, -78.994052f},
+            {-2.899454f, -78.994062f},
+            {-2.899584f, -78.994069f},
+            {-2.899716f, -78.994068f},
+            {-2.899864f, -78.994064f},
+            {-2.900006f, -78.99406f},
+            {-2.900132f, -78.994061f},
+            {-2.900263f, -78.994052f},
+            {-2.900333f, -78.994051f},
+            {-2.900452f, -78.994053f},
+            {-2.900524f, -78.994005f},
+            {-2.900567f, -78.993892f},
+            {-2.900608f, -78.993752f},
+            {-2.900651f, -78.993597f},
+            {-2.900705f, -78.99343f},
+            {-2.900741f, -78.993248f},
+            {-2.900776f, -78.99307f},
+            {-2.900821f, -78.99289f},
+            {-2.900864f, -78.992736f},
+            {-2.9009f, -78.9926f},
+            {-2.9009150000000004f, -78.992471f},
+            {-2.900933f, -78.992367f},
+            {-2.900965f, -78.99226100000001f},
+            {-2.900979f, -78.992164f},
+            {-2.9010340000000006f, -78.99204000000002f},
+            {-2.901068f, -78.991927f},
+            {-2.901106f, -78.991796f},
+            {-2.90116f, -78.991627f},
+            {-2.901217f, -78.99144000000001f},
+            {-2.901271f, -78.991237f},
+            {-2.90133f, -78.991041f},
+            {-2.901399f, -78.990818f},
+            {-2.901463f, -78.990589f},
+            {-2.901521f, -78.990378f},
+            {-2.901582f, -78.990174f},
+            {-2.901637f, -78.989996f},
+            {-2.901686f, -78.989848f},
+            {-2.901725f, -78.989731f},
+            {-2.901762f, -78.989625f},
+            {-2.901812f, -78.989492f},
+            {-2.901855f, -78.989364f},
+            {-2.901951f, -78.989249f},
+            {-2.902037f, -78.989112f},
+            {-2.902116f, -78.98900600000002f},
+            {-2.902186f, -78.988918f},
+            {-2.902283f, -78.988832f},
+            {-2.902387f, -78.988754f},
+            {-2.902491f, -78.988671f},
+            {-2.902588f, -78.988584f},
+            {-2.90271f, -78.988492f},
+            {-2.9028240000000003f, -78.988382f},
+            {-2.902938f, -78.988286f},
+            {-2.903038f, -78.988206f},
+            {-2.90313f, -78.988122f},
+            {-2.903215f, -78.988061f},
+            {-2.903291f, -78.98799f},
+            {-2.903374f, -78.987916f},
+            {-2.903453f, -78.987838f},
+            {-2.903552f, -78.987754f},
+            {-2.903664f, -78.987649f},
+            {-2.903799f, -78.987519f},
+            {-2.903952f, -78.987376f},
+            {-2.904122f, -78.987236f},
+            {-2.904279f, -78.987094f},
+            {-2.904417f, -78.986994f},
+            {-2.904483f, -78.986929f},
+            {-2.9045650000000003f, -78.986829f},
+            {-2.904645f, -78.986763f},
+            {-2.904736f, -78.986671f},
+            {-2.904838f, -78.986604f},
+            {-2.904983f, -78.986497f},
+            {-2.9051120000000004f, -78.986375f},
+            {-2.905252f, -78.986265f},
+            {-2.905363f, -78.986171f},
+            {-2.905415f, -78.986096f},
+            {-2.9054910000000005f, -78.986026f},
+            {-2.905566f, -78.985953f},
+            {-2.905662f, -78.985866f},
+            {-2.905777f, -78.985764f},
+            {-2.905905f, -78.985658f},
+            {-2.906044f, -78.98554f},
+            {-2.906213f, -78.985383f},
+            {-2.906393f, -78.985229f},
+            {-2.906576f, -78.98507f},
+            {-2.906741f, -78.984919f},
+            {-2.906913f, -78.984798f},
+            {-2.907015f, -78.98471f},
+            {-2.907104f, -78.984643f},
+            {-2.907166f, -78.984571f},
+            {-2.90718f, -78.984461f},
+            {-2.907087f, -78.984357f},
+            {-2.906982f, -78.984269f},
+            {-2.906874f, -78.984186f},
+            {-2.90674f, -78.984085f},
+            {-2.906605f, -78.983989f},
+            {-2.906494f, -78.983905f},
+            {-2.906416f, -78.983841f},
+            {-2.906359f, -78.98376700000001f},
+            {-2.906265f, -78.983714f},
+            {-2.906136f, -78.983663f},
+            {-2.906024f, -78.983671f},
+            {-2.905885f, -78.98371f},
+            {-2.905695f, -78.983772f},
+            {-2.9055f, -78.983833f},
+            {-2.905299f, -78.983885f},
+            {-2.905098f, -78.983919f},
+            {-2.904893f, -78.983969f},
+            {-2.904745f, -78.983977f},
+            {-2.904631f, -78.98399f},
+            {-2.90452f, -78.984011f},
+            {-2.904393f, -78.984046f},
+            {-2.904277f, -78.984078f},
+            {-2.904149f, -78.984109f},
+            {-2.904005f, -78.98415400000002f},
+            {-2.903845f, -78.98423f},
+            {-2.903675f, -78.98427f},
+            {-2.903467f, -78.984305f},
+            {-2.903267f, -78.984323f},
+            {-2.9030650000000002f, -78.984338f},
+            {-2.902861f, -78.984346f},
+            {-2.9026450000000006f, -78.984354f},
+            {-2.902426f, -78.984359f},
+            {-2.9022120000000005f, -78.984379f},
+            {-2.902045f, -78.984394f},
+            {-2.90189f, -78.984394f},
+            {-2.901761f, -78.984423f},
+            {-2.901663f, -78.984441f},
+            {-2.901538f, -78.984439f},
+            {-2.9014240000000004f, -78.984429f},
+            {-2.901322f, -78.984415f},
+            {-2.901178f, -78.98442f},
+            {-2.901082f, -78.984427f},
+            {-2.900985f, -78.984462f},
+            {-2.900869f, -78.984491f},
+            {-2.900742f, -78.98450400000002f},
+            {-2.900596f, -78.984517f},
+            {-2.900422f, -78.984527f},
+            {-2.900242f, -78.984544f},
+            {-2.900061f, -78.984538f},
+            {-2.8998860000000004f, -78.984553f},
+            {-2.89972f, -78.984542f},
+            {-2.899591f, -78.984479f},
+            {-2.899454f, -78.98444f},
+            {-2.899326f, -78.984336f},
+            {-2.8992170000000006f, -78.984211f},
+            {-2.8991440000000006f, -78.984068f},
+            {-2.8991f, -78.983924f},
+            {-2.899052f, -78.983825f},
+            {-2.899041f, -78.983734f},
+            {-2.898994f, -78.983653f},
+            {-2.898911f, -78.983559f},
+            {-2.898866f, -78.983438f},
+            {-2.898836f, -78.983279f},
+            {-2.898774f, -78.98307700000001f},
+            {-2.898722f, -78.982877f},
+            {-2.898648f, -78.982666f},
+            {-2.898558f, -78.982448f},
+            {-2.898484f, -78.982266f},
+            {-2.898421f, -78.982099f},
+            {-2.898393f, -78.982015f},
+            {-2.8980973f, -78.9812413f},
+            {-2.8977731f, -78.9804366f},
+            {-2.8975561f, -78.9795971f},
+            {-2.8971865f, -78.9777035f},
+            {-2.8970847f, -78.97705440000001f},
+            {-2.8969025f, -78.9760968f},
+            {-2.8981562f, -78.97585f},
+            {-2.8994742f, -78.97515f},
+            {-2.8995867f, -78.9751929f},
+            {-2.8997018f, -78.9751393f},
+            {-2.8996911f, -78.9749998f},
+            {-2.8995706f, -78.9749542f},
+            {-2.899225f, -78.9743507f},
+            {-2.8986759f, -78.9734897f}
+        }
+        ));
+
+
     }
 
-    public MapResources getInstance() {
+    public static MapResources getInstance() {
         return mapResources;
     }
 
+    public int findStop(Stop stop) {
+        return stops.indexOf(stop);
+    }
 
+  public Integer[] findRoutesFromStopId(int id) {
+    return stops.get(id).lines;
+  }
 
 }

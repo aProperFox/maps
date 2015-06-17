@@ -7,11 +7,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkBoxWest"
-        android:textColor="#202020"/>
+        android:textColor="@color/semilla_dark"
+        android:layout_marginLeft="20sp"
+        android:textSize="15sp"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkBoxEast"
-        android:textColor="#202020"/>
+        android:textColor="@color/semilla_dark"
+        android:layout_marginLeft="20sp"
+        android:textSize="15sp"/>
 </LinearLayout><!-- From: file:/home/olsontl/git/maps/app/src/main/res/layout/child_item.xml -->
