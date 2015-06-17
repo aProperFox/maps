@@ -66,7 +66,7 @@ public final class DemoDetailsList {
                         MultiMapDemoActivity.class),
         new DemoDetails(R.string.my_location_demo_label,
                         R.string.my_location_demo_description,
-                        MyLocationDemoActivity.class),
+                        MapActivity.class),
         new DemoDetails(R.string.options_demo_label,
                         R.string.options_demo_description,
                         OptionsDemoActivity.class),

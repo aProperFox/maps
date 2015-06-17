@@ -3516,8 +3516,31 @@ public final class MapResources {
         return stops.indexOf(stop);
     }
 
-  public Integer[] findRoutesFromStopId(int id) {
+    public Integer[] findRoutesFromStopId(int id) {
     return stops.get(id).lines;
   }
+
+    public Integer getColorByIndex(int index) {
+        if (index == 3) {
+            return Color.parseColor("#994169e1");
+        } else if (index == 5) {
+            return Color.parseColor("#99dd69f5");
+        } else if (index == 7) {
+            return Color.parseColor("#9950dc59");
+        } else if (index == 8) {
+            return Color.parseColor("#99808000");
+        } else if (index == 15) {
+            return Color.parseColor("#99ff9900");
+        } else if (index == 20) {
+            return Color.parseColor("#9920b2aa");
+        } else if (index == 50) {
+            return Color.parseColor("#99e53030");
+        }
+        return Color.parseColor("#00000000");
+    }
+
+    public int getRouteNumberByName(String routeName) {
+        return Integer.parseInt(routeName.replaceAll("\\D+", ""));
+    }
 
 }
