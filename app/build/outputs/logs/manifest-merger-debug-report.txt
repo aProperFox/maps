@@ -2,45 +2,45 @@
 manifest
 ADDED from AndroidManifest.xml:2:1
 	package
-		ADDED from AndroidManifest.xml:3:3
+		ADDED from AndroidManifest.xml:2:11
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 	android:versionName
-		ADDED from AndroidManifest.xml:5:3
+		ADDED from AndroidManifest.xml:5:11
 	android:versionCode
-		ADDED from AndroidManifest.xml:4:3
+		ADDED from AndroidManifest.xml:4:11
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
+		ADDED from AndroidManifest.xml:3:11
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from AndroidManifest.xml:7:3
+ADDED from AndroidManifest.xml:7:5
 	android:name
-		ADDED from AndroidManifest.xml:7:20
+		ADDED from AndroidManifest.xml:7:22
 uses-permission#android.permission.INTERNET
-ADDED from AndroidManifest.xml:8:3
+ADDED from AndroidManifest.xml:8:5
 	android:name
-		ADDED from AndroidManifest.xml:8:20
+		ADDED from AndroidManifest.xml:8:22
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from AndroidManifest.xml:10:3
+ADDED from AndroidManifest.xml:10:5
 	android:name
-		ADDED from AndroidManifest.xml:10:20
+		ADDED from AndroidManifest.xml:10:22
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from AndroidManifest.xml:12:3
+ADDED from AndroidManifest.xml:12:5
 	android:name
-		ADDED from AndroidManifest.xml:12:20
+		ADDED from AndroidManifest.xml:12:22
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from AndroidManifest.xml:13:3
+ADDED from AndroidManifest.xml:13:5
 	android:name
-		ADDED from AndroidManifest.xml:13:20
+		ADDED from AndroidManifest.xml:13:22
 uses-feature#0x00020000
-ADDED from AndroidManifest.xml:15:3
+ADDED from AndroidManifest.xml:15:5
 	android:glEsVersion
-		ADDED from AndroidManifest.xml:16:5
+		ADDED from AndroidManifest.xml:16:9
 	android:required
-		ADDED from AndroidManifest.xml:17:5
+		ADDED from AndroidManifest.xml:17:9
 application
-ADDED from AndroidManifest.xml:19:3
+ADDED from AndroidManifest.xml:19:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from com.android.support:support-v4:22.0.0:22:5
@@ -126,17 +126,17 @@ MERGED from com.google.android.gms:play-services-wearable:7.3.0:19:5
 MERGED from com.google.android.gms:play-services-base:7.3.0:20:5
 MERGED from com.android.support:support-v4:22.0.0:22:5
 	android:hardwareAccelerated
-		ADDED from AndroidManifest.xml:21:5
+		ADDED from AndroidManifest.xml:20:9
 	android:icon
-		ADDED from AndroidManifest.xml:20:5
+		ADDED from AndroidManifest.xml:21:9
 meta-data#com.google.android.maps.v2.API_KEY
-ADDED from AndroidManifest.xml:22:5
+ADDED from AndroidManifest.xml:22:9
 	android:value
-		ADDED from AndroidManifest.xml:23:5
+		ADDED from AndroidManifest.xml:24:13
 	android:name
-		ADDED from AndroidManifest.xml:22:16
+		ADDED from AndroidManifest.xml:23:13
 meta-data#com.google.android.gms.version
-ADDED from AndroidManifest.xml:24:5
+ADDED from AndroidManifest.xml:25:9
 MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
 MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
 MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
@@ -165,27 +165,35 @@ MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
 MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
 MERGED from com.google.android.gms:play-services-base:7.3.0:21:9
 	android:value
+		ADDED from AndroidManifest.xml:27:13
+	android:name
 		ADDED from AndroidManifest.xml:26:13
-	android:name
-		ADDED from AndroidManifest.xml:25:13
-activity#com.example.mapdemo.MyLocationDemoActivity
-ADDED from AndroidManifest.xml:27:5
+activity#com.example.mapdemo.MainActivity
+ADDED from AndroidManifest.xml:29:9
 	android:label
-		ADDED from AndroidManifest.xml:29:7
+		ADDED from AndroidManifest.xml:31:13
 	android:theme
-		ADDED from AndroidManifest.xml:30:7
+		ADDED from AndroidManifest.xml:32:13
 	android:name
-		ADDED from AndroidManifest.xml:28:7
+		ADDED from AndroidManifest.xml:30:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:31:7
+ADDED from AndroidManifest.xml:33:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:32:9
+ADDED from AndroidManifest.xml:34:17
 	android:name
-		ADDED from AndroidManifest.xml:32:17
+		ADDED from AndroidManifest.xml:34:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:33:9
+ADDED from AndroidManifest.xml:35:17
 	android:name
-		ADDED from AndroidManifest.xml:33:19
+		ADDED from AndroidManifest.xml:35:27
+activity#com.example.mapdemo.MapActivity
+ADDED from AndroidManifest.xml:38:9
+	android:label
+		ADDED from AndroidManifest.xml:40:13
+	android:theme
+		ADDED from AndroidManifest.xml:41:13
+	android:name
+		ADDED from AndroidManifest.xml:39:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5

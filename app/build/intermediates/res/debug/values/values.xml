@@ -318,6 +318,11 @@ available. Please contact the developer for assistance.</string>
     <string name="down_arrow">\u2193</string>
     <string name="drag_melbourne">Drag Melbourne</string>
     <string name="duration">Custom Duration</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="east">East</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
+    <eat-comment/>
     <string name="events_demo_description">Demonstrates event handling.</string>
     <string name="events_demo_label">Events</string>
     <string name="fade_in">Fade In Tiles</string>
@@ -331,6 +336,11 @@ available. Please contact the developer for assistance.</string>
     <string name="go_to_san_fran">Go to San Fran</string>
     <string name="go_to_santorini">Go to Santorini</string>
     <string name="go_to_sydney">Go to Sydney</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="gps_prompt">Your GPS is disabled, enable it?</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
+    <eat-comment/>
     <string name="ground_overlay_demo_description">Demonstrates how to add a GroundOverlay to a map.</string>
     <string name="ground_overlay_demo_label">Ground Overlays</string>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
@@ -393,6 +403,12 @@ available. Please contact the developer for assistance.</string>
     <string name="polyline_demo_label">Polylines</string>
     <string name="programmatic_demo_description">Demonstrates how to add a MapFragment programmatically.</string>
     <string name="programmatic_demo_label">Programmatically add map</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="prompt_no">No</string>
+    <string name="prompt_yes">Yes</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
+    <eat-comment/>
     <string name="properties_circle">Properties for Circle(s)</string>
     <string name="properties_sydney_polygon">Properties for Sydney Polygon</string>
     <string name="properties_sydney_polyline">Properties for Sydney Polyline</string>
@@ -410,6 +426,12 @@ available. Please contact the developer for assistance.</string>
     <string name="save_state_demo_label">Save the state of a MapFragment.</string>
     <string name="save_state_instructions">Drag the marker, tap on it to change its color and rotate the device to check that the state of the map is preserved.</string>
     <string name="scroll">Scroll Gestures</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="searching_location">Searching for location…</string>
+    <string name="show_stops">Show Stops</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
+    <eat-comment/>
     <string name="snapshot_clear_button">Clear</string>
     <string name="snapshot_demo_description">Demonstrates how to take a snapshot of the map.</string>
     <string name="snapshot_demo_label">Snapshot</string>
@@ -466,6 +488,9 @@ available. Please contact the developer for assistance.</string>
     <!-- From: file:/home/olsontl/git/maps/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.3.0/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>
+    <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="west">West</string>
     <!-- From: file:/home/olsontl/git/maps/app/src/main/res/values/demo_strings.xml -->
     <eat-comment/>
     <string name="width">Width</string>

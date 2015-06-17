@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cuenca Rutas Bus</string>
+    <string name="action_settings">Configuración</string>
+    <string name="hello_world">Hola Mundo!</string>
+    <string name="imgdesc">imgdesc</string>
+    <string name="searching_location">Buscando ubicación…</string>
+    <string name="gps_prompt">¿Su GPS está desactivado, activarse?</string>
+    <string name="prompt_yes">Sí</string>
+    <string name="prompt_no">No</string>
+    <string name="east">Este</string>
+    <string name="west">Oeste</string>
+    <string name="show_stops">Mostrar paradas</string>
+
+    <string-array name="titles">
+        <item>Ruta 3</item>
+        <item>Ruta 5</item>
+        <item>Ruta 7</item>
+        <item>Ruta 8</item>
+        <item>Ruta 15</item>
+        <item>Ruta 20</item>
+        <item>Ruta 50</item>
+    </string-array>
+</resources>

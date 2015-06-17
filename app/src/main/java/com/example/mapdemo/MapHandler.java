@@ -1,6 +1,5 @@
 package com.example.mapdemo;
 
-import android.graphics.Color;
 import android.util.SparseArray;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -19,19 +18,7 @@ import java.util.Arrays;
  */
 public class MapHandler {
 
-  private int routeWeight = 7;
-
-  private SparseArray<String> colorRoute() {
-    SparseArray<String> map = new SparseArray<String>();
-    map.put(3, "royalblue");
-    map.put(5, "fuchsia");
-    map.put(7, "lime");
-    map.put(8, "olive");
-    map.put(15, "orange");
-    map.put(20, "LightSeaGreen");
-    map.put(50, "red");
-    return map;
-  }
+  private int routeWeight = 9;
 
   private boolean verMarkers = false;
 
@@ -188,30 +175,9 @@ public class MapHandler {
     }
   }
 
-  public Integer getColorByIndex(int index) {
-    if (index == 3) {
-      return Color.parseColor("#994169e1");
-    } else if (index == 5) {
-      return Color.parseColor("#99dd69f5");
-    } else if (index == 7) {
-      return Color.parseColor("#9950dc59");
-    } else if (index == 8) {
-      return Color.parseColor("#99808000");
-    } else if (index == 15) {
-      return Color.parseColor("#99ff9900");
-    } else if (index == 20) {
-      return Color.parseColor("#9920b2aa");
-    } else if (index == 50) {
-      return Color.parseColor("#99e53030");
-    }
-    return Color.parseColor("#00000000");
-  }
-
   public void showRoutes(String route, int direction, boolean isChecked) {
     int index = Integer.parseInt(route.replaceAll("\\D+", ""));
     if (isChecked) {
-      int color = getColorByIndex(index);
-      //$(this).parent().parent().parent().css('background-color', color);
       if(direction == 1) {
         drawPoliLyne(mapResources.routes.get(index).east, index, direction);
       } else {
@@ -222,9 +188,6 @@ public class MapHandler {
       rutasMarkersSel.get(index)[direction] = true;
       visibleRoutes.add(new Tuple(index, direction));
     } else {
-      //if (!$(this).parent().siblings('label').children('input').prop("checked")) {
-      //  $(this).parent().parent().parent().css('background-color', 'rgba(205,205,205,0.65)');
-      //}
       routePolyLine.get(index).get(direction).setVisible(false);
       quitarMarkers(markersArray.get(index).get(direction));
       rutasMarkersSel.get(index)[direction] = false;
