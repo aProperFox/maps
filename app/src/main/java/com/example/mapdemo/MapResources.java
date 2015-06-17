@@ -3512,5 +3512,12 @@ public final class MapResources {
         return mapResources;
     }
 
+    public int findStop(Stop stop) {
+        return stops.indexOf(stop);
+    }
+
+  public Integer[] findRoutesFromStopId(int id) {
+    return stops.get(id).lines;
+  }
 
 }

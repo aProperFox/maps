@@ -9,6 +9,7 @@
         android:id="@+id/bus_route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="35dp"
-        android:textColor="#202020"/>
+        android:paddingLeft="15sp"
+        android:textSize="18sp"
+        android:textColor="@color/semilla_dark"/>
 </LinearLayout><!-- From: file:/home/olsontl/git/maps/app/src/main/res/layout/bus_route_item.xml -->

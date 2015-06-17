@@ -1,8 +1,6 @@
 package com.example.mapdemo;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -35,6 +33,8 @@ public class MapHandler {
     return map;
   }
 
+  private boolean verMarkers = false;
+
   private SparseArray<ArrayList<Polyline>> routePolyLine() {
     SparseArray<ArrayList<Polyline>> map = new SparseArray<>();
     map.put(3, new ArrayList<Polyline>(2));
@@ -60,12 +60,8 @@ public class MapHandler {
     map.get(50).add(null);
     return map;
   }
-
-  private boolean verMarkers = true;
-
-
   private SparseArray<ArrayList<ArrayList<Marker>>> markersArray() {
-    SparseArray<ArrayList<ArrayList<Marker>>> map = new SparseArray<ArrayList<ArrayList<Marker>>>();
+    SparseArray<ArrayList<ArrayList<Marker>>> map = new SparseArray<>();
     map.put(3, new ArrayList<ArrayList<Marker>>(2));
     map.get(3).add(new ArrayList<Marker>());
     map.get(3).add(new ArrayList<Marker>());
@@ -89,9 +85,8 @@ public class MapHandler {
     map.get(50).add(new ArrayList<Marker>());
     return map;
   }
-
   private SparseArray<boolean[]> rutasMarkersSel() {
-    SparseArray<boolean[]> map = new SparseArray<boolean[]>();
+    SparseArray<boolean[]> map = new SparseArray<>();
     map.put(3, new boolean[2]);
     map.put(5, new boolean[2]);
     map.put(7, new boolean[2]);
@@ -106,21 +101,31 @@ public class MapHandler {
   private SparseArray<ArrayList<ArrayList<Marker>>> markersArray;
   private SparseArray<boolean[]> rutasMarkersSel;
 
-  private MapResources mapResources;
-  private GoogleMap map;
-  private Context context;
+  private class Tuple {
+    public int route;
+    public int direction;
+    public Tuple(int route, int direction) {
+      this.route = route;
+      this.direction = direction;
+    }
+  }
 
-  public MapHandler(GoogleMap map, Context context) {
+  private ArrayList<Tuple> visibleRoutes;
+
+  public static MapResources mapResources;
+  private GoogleMap map;
+
+  public MapHandler(GoogleMap map) {
     mapResources = MapResources.getInstance();
     this.map = map;
-    this.context = context;
     routePolyLine = routePolyLine();
     markersArray = markersArray();
     rutasMarkersSel = rutasMarkersSel();
+    visibleRoutes = new ArrayList<>();
   }
 
   public ArrayList<MapResources.Stop> buscarParadas(int linea, int dir) {
-    boolean isEast = false;
+    boolean isEast;
     if (dir == 0) {
       isEast = false;
     } else {
@@ -129,7 +134,6 @@ public class MapHandler {
     ArrayList<MapResources.Stop> tempParadas = new ArrayList<>();
     ArrayList<MapResources.Stop> paradas = mapResources.stops;
     for (int i = 0; i < paradas.size(); i++) {
-      Log.i("buscarParadas", "lines : " + Arrays.toString(paradas.get(i).lines) + ", line: " + linea);
       if (paradas.get(i).isEastBound == isEast && Arrays.asList(paradas.get(i).lines).contains(linea)) {
         tempParadas.add(paradas.get(i));
       }
@@ -138,9 +142,9 @@ public class MapHandler {
   }
 
   public void drawPoliLyne(float[][] coordPL, int numRoutePL, int dir) {
-        /*var lineSymbol = {
-                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-        };*/
+    /*var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+    };*/
 
     if(routePolyLine.get(numRoutePL).get(dir) != null) {
       routePolyLine.get(numRoutePL).get(dir).setVisible(true);
@@ -163,42 +167,24 @@ public class MapHandler {
 
     for (int i = 0; i < markersRuta.size(); i++) {
       if (verMarkers) {
-        Marker marker = map.addMarker(new MarkerOptions().visible(true)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_stop))
-                .title(markersRuta.get(i).name)
-                .position(new LatLng(markersRuta.get(i).latitude, markersRuta.get(i).longitude))
-                .snippet("Applicable Routes: " + Arrays.toString(markersRuta.get(i).lines))
-        );
-
-        markersArray.get(index).get(direction).add(marker);
+        if (markersArray.get(index).get(direction).size() > i) {
+          markersArray.get(index).get(direction).get(i).setVisible(true);
+        } else {
+          Marker marker = map.addMarker(new MarkerOptions().visible(true)
+                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_stop))
+                  .title(markersRuta.get(i).name)
+                  .position(new LatLng(markersRuta.get(i).latitude, markersRuta.get(i).longitude))
+                  .snippet(mapResources.findStop(markersRuta.get(i)) + "")
+          );
+          markersArray.get(index).get(direction).add(marker);
+        }
       }
-    }
-  }
-
-
-  public void cargarMarkersTipo(ArrayList<MapResources.Stop> markersRuta, ArrayList<Marker> markers) {
-    // Display multiple markers on a map
-
-    for (int i = 0; i < markersRuta.size(); i++) {
-      Marker marker = map.addMarker(new MarkerOptions()
-              .icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_stop))
-              .title(markersRuta.get(i).name)
-              .position(new LatLng(markersRuta.get(i).latitude, markersRuta.get(i).longitude))
-              .snippet("Applicable Routes: " + markersRuta.get(i).lines)
-      );
-      markers.add(marker);
     }
   }
 
   public void quitarMarkers(ArrayList<Marker> markers) {
     for (int j = 0; j < markers.size(); j++) {
-      markers.get(j).remove();
-    }
-  }
-
-  public void quitarMarkersTipo(ArrayList<Marker> markers) {
-    for (int j = 0; j < markers.size(); j++) {
-      markers.get(j).remove();
+      markers.get(j).setVisible(false);
     }
   }
 
@@ -222,8 +208,7 @@ public class MapHandler {
   }
 
   public void showRoutes(String route, int direction, boolean isChecked) {
-    int index = Integer.parseInt(route.replaceAll("\\D+",""));
-    ArrayList<MapResources.Stop> paradasArray = buscarParadas(index, direction);
+    int index = Integer.parseInt(route.replaceAll("\\D+", ""));
     if (isChecked) {
       int color = getColorByIndex(index);
       //$(this).parent().parent().parent().css('background-color', color);
@@ -232,41 +217,41 @@ public class MapHandler {
       } else {
         drawPoliLyne(mapResources.routes.get(index).west, index, direction);
       }
-      Log.i("MapHandler, showRoutes", "ParadasArray: " + paradasArray);
+      ArrayList<MapResources.Stop> paradasArray = buscarParadas(index, direction);
       cargarMarkers(paradasArray, index, direction);
       rutasMarkersSel.get(index)[direction] = true;
-      //calcularCentro();
+      visibleRoutes.add(new Tuple(index, direction));
     } else {
       //if (!$(this).parent().siblings('label').children('input').prop("checked")) {
       //  $(this).parent().parent().parent().css('background-color', 'rgba(205,205,205,0.65)');
       //}
-      routePolyLine.get(index).get(direction).setVisible(false);  // TODO: change to setVisible
+      routePolyLine.get(index).get(direction).setVisible(false);
       quitarMarkers(markersArray.get(index).get(direction));
       rutasMarkersSel.get(index)[direction] = false;
+      for (int i = 0; i < visibleRoutes.size(); i++) {
+        if (visibleRoutes.get(i).route == index) {
+          visibleRoutes.remove(i);
+          break;
+        }
+      }
     }
   }
 
+  public void toggleMarkers(boolean shouldShow) {
+    if (shouldShow) {
+      verMarkers = true;
+      for (int i = 0; i < visibleRoutes.size(); i++) {
+        int index = visibleRoutes.get(i).route;
+        int direction = visibleRoutes.get(i).direction;
+        ArrayList<MapResources.Stop> paradasArray = buscarParadas(index, direction);
+        cargarMarkers(paradasArray, index, direction);
+      }
+    } else {
+      verMarkers = false;
+      for (int i = 0; i < visibleRoutes.size(); i++) {
+        quitarMarkers(markersArray.get(visibleRoutes.get(i).route).get(visibleRoutes.get(i).direction));
+      }
+    }
+  }
 
 }
-    /*$('#tipo1chk').click(function() {
-      if (this.checked) {
-        for (int key in rutasMarkersSel){
-          for (int i = 0; i < 2; i++) {
-            if (rutasMarkersSel[key][i] == 1) {
-              var paradasArray = buscarParadas(key, i);
-              cargarMarkersTipo(paradasArray, markersArray[key][i]);
-            }
-          }
-        }
-        verMarkers = true;
-      } else {
-        for (int key in rutasMarkersSel){
-          for (int i = 0; i < 2; i++) {
-            if (rutasMarkersSel[key][i] == 1) {
-              quitarMarkersTipo(markersArray[key][i]);
-            }
-          }
-        }
-        verMarkers = false;
-      }
-    });*/
