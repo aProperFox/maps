@@ -11,6 +11,7 @@
     <string name="east">East</string>
     <string name="west">West</string>
     <string name="show_stops">Show Stops</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3694976253048557/6961103226</string>
 
     <string-array name="titles">
         <item>Bus Line 3</item>
