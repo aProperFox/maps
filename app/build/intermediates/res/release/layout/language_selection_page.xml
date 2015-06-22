@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#161616">
+
+
+    <View
+        android:id="@+id/center_view"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/language_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/center_view"
+        android:paddingBottom="10sp"
+        android:paddingTop="10sp"
+        android:text="English"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:background="@drawable/language_option"
+        android:textColor="@color/semilla_light"
+        android:onClick="saveLanguage"/>
+
+
+    <Button
+        android:id="@+id/language_espanol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/language_english"
+        android:text="Español"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:background="@drawable/language_option"
+        android:textColor="@color/semilla_light"
+        android:onClick="saveLanguage"/>
+
+</RelativeLayout><!-- From: file:/home/olsontl/git/maps/app/src/main/res/layout/language_selection_page.xml -->

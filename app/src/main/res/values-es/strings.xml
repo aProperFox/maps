@@ -11,6 +11,7 @@
     <string name="east">Este</string>
     <string name="west">Oeste</string>
     <string name="show_stops">Mostrar paradas</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3694976253048557/6961103226</string>
 
     <string-array name="titles">
         <item>Ruta 3</item>

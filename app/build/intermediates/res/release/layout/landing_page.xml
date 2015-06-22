@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="15sp"
+              android:paddingStart="15sp"
+              android:paddingRight="15sp"
+              android:paddingEnd="15sp"
+              android:background="#161616">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:src="@drawable/semilla"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:src="@drawable/alternatur"/>
+
+</LinearLayout><!-- From: file:/home/olsontl/git/maps/app/src/main/res/layout/landing_page.xml -->
