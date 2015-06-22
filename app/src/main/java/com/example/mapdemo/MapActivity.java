@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -13,20 +14,23 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -48,6 +52,7 @@ import com.google.android.gms.maps.model.Marker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class MapActivity extends FragmentActivity
       implements
@@ -58,7 +63,6 @@ public class MapActivity extends FragmentActivity
       OnMapReadyCallback {
 
     private GoogleApiClient mGoogleApiClient;
-    private TextView mMessageView;
     private Resources resources;
 
     // These settings are the same as the settings for the map. They will in fact give you updates
@@ -77,30 +81,56 @@ public class MapActivity extends FragmentActivity
     private ExpandableListView expListView;
     public static MapHandler mapHandler;
     private static HashMap<Integer, Integer> routeImages;
-
     static {
         routeImages = new HashMap<Integer, Integer>();
-        routeImages.put(3, R.drawable.route_3);
-        routeImages.put(5, R.drawable.route_5);
-        routeImages.put(7, R.drawable.route_7);
-        routeImages.put(8, R.drawable.route_8);
-        routeImages.put(15, R.drawable.route_15);
-        routeImages.put(20, R.drawable.route_20);
-        routeImages.put(50, R.drawable.route_50);
+        routeImages.put(3, R.drawable.route3);
+        routeImages.put(5, R.drawable.route5);
+        routeImages.put(7, R.drawable.route7);
+        routeImages.put(8, R.drawable.route8);
+        routeImages.put(15, R.drawable.route15);
+        routeImages.put(20, R.drawable.route20);
+        routeImages.put(50, R.drawable.route50);
     }
+    private static ArrayList<boolean[]> checkedChildren;
 
     private GoogleMap mMap;
+    private SupportMapFragment mMapFragment;
+
+    private static SparseArray<boolean[]> shownRoutes;
+    private static boolean isVerMakers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setLanguage();
+
         setContentView(R.layout.map_activity);
 
+        checkedChildren = new ArrayList<boolean[]>() {{
+            for (int i = 0; i < routeImages.size(); i++) {
+                add(new boolean[2]);
+            }
+        }};
+
+        initialize();
+
+    }
+
+    public void initialize() {
         resources = getResources();
 
-        SupportMapFragment mapFragment =
-              (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        // Load Ads
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mMapFragment = SupportMapFragment.newInstance();
+        FragmentTransaction fragmentTransaction =
+              getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.map_layout, mMapFragment);
+        fragmentTransaction.commit();
+        mMapFragment.getMapAsync(this);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
               .addApi(LocationServices.API)
@@ -108,13 +138,12 @@ public class MapActivity extends FragmentActivity
               .addOnConnectionFailedListener(this)
               .build();
 
+        // Initialize ExpandableListView
         menutitles = getResources().getStringArray(R.array.titles);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         List<RowItem> rowItems = new ArrayList<RowItem>();
-
         final List<String> groupList = new ArrayList<String>();
-
         for (String menutitle : menutitles) {
             RowItem items = new RowItem(menutitle);
             rowItems.add(items);
@@ -125,8 +154,13 @@ public class MapActivity extends FragmentActivity
 
         expListView = (ExpandableListView) findViewById(R.id.expandable_list);
         final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, groupList);
+        expListAdapter.checkedChildren = this.checkedChildren;
         expListView.setAdapter(expListAdapter);
-
+        for (int i = 0; i < checkedChildren.size(); i++) {
+            if(checkedChildren.get(i)[0] || checkedChildren.get(i)[1]) {
+                expListView.expandGroup(i);
+            }
+        }
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             public boolean onChildClick(ExpandableListView parent, View v,
@@ -135,9 +169,6 @@ public class MapActivity extends FragmentActivity
             }
         });
 
-        //expListView.setOnItemClickListener(new SlideitemListener());
-
-        // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
@@ -151,13 +182,11 @@ public class MapActivity extends FragmentActivity
             }
         };
 
-
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
             expListView.setIndicatorBounds(expListView.getWidth() - 80, expListView.getWidth() - 10);
         } else {
             expListView.setIndicatorBoundsRelative(expListView.getWidth() - 80, expListView.getWidth() - 10);
         }
-
     }
 
     @Override
@@ -190,7 +219,12 @@ public class MapActivity extends FragmentActivity
         mUiSettings.setRotateGesturesEnabled(false);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-2.901270, -79.003542), 13));
         map.setInfoWindowAdapter(new MyInfoWindowAdapter());
-        mapHandler = new MapHandler(map);
+        boolean doesMapHandlerExist = mapHandler != null;
+        mapHandler = new MapHandler(map, this);
+        if (doesMapHandlerExist && shownRoutes != null) {
+            mapHandler.reDrawShownRoutes(shownRoutes);
+            mapHandler.toggleMarkers(isVerMakers);
+        }
         mMap = map;
     }
 
@@ -273,16 +307,6 @@ public class MapActivity extends FragmentActivity
         alert.show();
     }
 
-
-    // listener for menu
-    class SlideitemListener implements ListView.OnItemClickListener {
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        }
-
-    }
-
     @Override
     public void setTitle(CharSequence title) {
         getActionBar().setTitle(title);
@@ -332,7 +356,27 @@ public class MapActivity extends FragmentActivity
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        shownRoutes = mapHandler.shownRoutes;
+        isVerMakers = mapHandler.verMarkers;
+        final SparseArray<boolean[]> shownRoutes = mapHandler.shownRoutes;
+        checkedChildren = new ArrayList<boolean[]>() {{
+            for (int i = 0; i < shownRoutes.size(); i++) {
+                add(shownRoutes.get(shownRoutes.keyAt(i)));
+            }
+        }};
+
+        setLanguage();
         super.onConfigurationChanged(newConfig);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.map_activity_horizontal);
+        } else {
+            setContentView(R.layout.map_activity);
+        }
+
+        initialize();
+
+        ((CheckBox)findViewById(R.id.show_routes)).setChecked(isVerMakers);
+
         // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
@@ -343,14 +387,6 @@ public class MapActivity extends FragmentActivity
 
         MyInfoWindowAdapter() {
             myContentsView = getLayoutInflater().inflate(R.layout.info_window, null);
-        }
-
-        public View setInfoContents(Marker marker) {
-
-            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.title));
-            tvTitle.setText(marker.getTitle());
-
-            return myContentsView;
         }
 
         @Override
@@ -389,6 +425,18 @@ public class MapActivity extends FragmentActivity
     public void onShowStops(View view) {
         CheckBox cb = (CheckBox) view;
         mapHandler.toggleMarkers(cb.isChecked());
+        getSharedPreferences(MainActivity.PREFERENCES, 0).edit().putBoolean("shouldShowRoutes", cb.isChecked()).apply();
+    }
+
+    private void setLanguage() {
+        // Set language
+        SharedPreferences preferences = getSharedPreferences(MainActivity.PREFERENCES, 0);
+        Locale locale = new Locale(preferences.getString("language", "en"), preferences.getString("locale", "US"));
+        Locale.setDefault(locale);
+        Log.i("MAP ACTIVITY", "Language" + Locale.getDefault().getLanguage() + ", locale" + Locale.getDefault().getCountry());
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
 }

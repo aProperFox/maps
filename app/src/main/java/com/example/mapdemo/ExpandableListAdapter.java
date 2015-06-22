@@ -22,9 +22,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Activity context;
     private List<String> bus_routes;
 
-    private ArrayList<boolean[]> checkedChildren;
+    public ArrayList<boolean[]> checkedChildren;
 
-    public ExpandableListAdapter(Activity context, final List<String> bus_routes) {
+    public ExpandableListAdapter(final Activity context, final List<String> bus_routes) {
         this.context = context;
         this.bus_routes = bus_routes;
 

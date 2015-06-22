@@ -51,6 +51,8 @@ public final class MainActivity extends Activity {
                     public void run() {
                         if (sharedPreferences.getBoolean("isLanguageSelected", false)) {
                             startActivity(new Intent(MainActivity.this, MapActivity.class));
+                            finish();
+                            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
                         } else {
                             setContentView(R.layout.language_selection_page);
                         }
@@ -65,8 +67,10 @@ public final class MainActivity extends Activity {
         TextView tv = (TextView) view;
         if(tv.getText().toString().equals("English")) {
             locale = new Locale("en", "US");
+            sharedPreferences.edit().putString("language", "en").putString("locale", "US").apply();
         } else {
             locale = new Locale("es", "ES");
+            sharedPreferences.edit().putString("language", "es").putString("locale", "ES").apply();
         }
         Locale.setDefault(locale);
         Configuration appConfig = new Configuration();
@@ -76,5 +80,7 @@ public final class MainActivity extends Activity {
 
         sharedPreferences.edit().putBoolean("isLanguageSelected", true).apply();
         startActivity(new Intent(MainActivity.this, MapActivity.class));
+        finish();
+        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
     }
 }

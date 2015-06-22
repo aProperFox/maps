@@ -49,9 +49,9 @@ public final class MapResources {
         routeColors.put(3, Color.parseColor("#994169e1"));
         routeColors.put(5, Color.parseColor("#99dd69f5"));
         routeColors.put(7, Color.parseColor("#9950dc59"));
-        routeColors.put(8, Color.parseColor("#99808000"));
-        routeColors.put(15, Color.parseColor("#99ff9900"));
-        routeColors.put(20, Color.parseColor("#9920b2aa"));
+        routeColors.put(8, Color.parseColor("#99bce53d"));
+        routeColors.put(15, Color.parseColor("#99ffaa2b"));
+        routeColors.put(20, Color.parseColor("#9937e4da"));
         routeColors.put(50, Color.parseColor("#99e53030"));
 
         // Initialize stops
@@ -3519,25 +3519,6 @@ public final class MapResources {
     public Integer[] findRoutesFromStopId(int id) {
     return stops.get(id).lines;
   }
-
-    public Integer getColorByIndex(int index) {
-        if (index == 3) {
-            return Color.parseColor("#994169e1");
-        } else if (index == 5) {
-            return Color.parseColor("#99dd69f5");
-        } else if (index == 7) {
-            return Color.parseColor("#9950dc59");
-        } else if (index == 8) {
-            return Color.parseColor("#99808000");
-        } else if (index == 15) {
-            return Color.parseColor("#99ff9900");
-        } else if (index == 20) {
-            return Color.parseColor("#9920b2aa");
-        } else if (index == 50) {
-            return Color.parseColor("#99e53030");
-        }
-        return Color.parseColor("#00000000");
-    }
 
     public int getRouteNumberByName(String routeName) {
         return Integer.parseInt(routeName.replaceAll("\\D+", ""));
